@@ -1,6 +1,6 @@
 Copyright (c) 2017 Tobias Bieniek, Thomas Sauer, and contributors.
 
-All rights reserved.
+All rights reserved. 
 
 MIT License
 
