@@ -1,16 +1,33 @@
 {
-  "name": "language-client-example",
-  "description": "VSCode part of a language server",
-  "author": "Microsoft Corporation",
+  "name": "vscode-ember",
+  "displayName": "Ember Language Server",
+  "description": "Provides features like auto complete, goto definition and diagnostics for Ember.js projects",
+  "author": "Thomas Sauer <t-sauer@outlook.de>",
   "license": "MIT",
   "version": "0.0.1",
   "publisher": "vscode",
+  "keywords": [
+    "Ember.js",
+    "Ember-CLI",
+    "Glimmer",
+    "Handlebars",
+    "Language server"
+  ],
   "engines": {
     "vscode": "^1.8.0"
   },
+  "preview": true,
   "categories": [
-    "Other"
+    "Languages",
+    "Linters"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/emberwatch/vscode-ember"
+  },
+  "bugs": {
+		"url": "https://github.com/emberwatch/vscode-ember/issues"
+	},
   "activationEvents": [
     "onLanguage:handlebars",
     "onLanguage:javascript",
