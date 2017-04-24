@@ -4,7 +4,7 @@
   "description": "Provides features like auto complete, goto definition and diagnostics for Ember.js projects",
   "author": "Thomas Sauer <t-sauer@outlook.de>",
   "license": "MIT",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "publisher": "emberjs",
   "icon": "icon.png",
   "keywords": [
