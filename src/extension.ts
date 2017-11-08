@@ -7,7 +7,7 @@
 import * as path from 'path';
 
 import { workspace, Disposable, ExtensionContext } from 'vscode';
-import { LanguageClient, LanguageClientOptions, SettingMonitor, ServerOptions, TransportKind } from 'vscode-languageclient';
+import { LanguageClient, LanguageClientOptions, SettingMonitor, ServerOptions, TransportKind, RevealOutputChannelOn } from 'vscode-languageclient';
 
 export async function activate(context: ExtensionContext) {
 
@@ -31,7 +31,8 @@ export async function activate(context: ExtensionContext) {
   let clientOptions: LanguageClientOptions = {
     // Register the server for plain text documents
     documentSelector: ['handlebars', 'javascript'],
-    outputChannelName: 'Ember Language Server'
+    outputChannelName: 'Ember Language Server',
+    revealOutputChannelOn: RevealOutputChannelOn.Never
   };
 
   // Create the language client and start the client.
