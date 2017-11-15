@@ -15,7 +15,7 @@
     "Language server"
   ],
   "engines": {
-    "vscode": "^1.8.0"
+    "vscode": "^1.16.0"
   },
   "preview": true,
   "categories": [
