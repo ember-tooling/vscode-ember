@@ -15,7 +15,7 @@
     "Language server"
   ],
   "engines": {
-    "vscode": "^1.16.0"
+    "vscode": "^1.22.2"
   },
   "preview": true,
   "categories": [
@@ -27,8 +27,8 @@
     "url": "https://github.com/emberwatch/vscode-ember"
   },
   "bugs": {
-		"url": "https://github.com/emberwatch/vscode-ember/issues"
-	},
+    "url": "https://github.com/emberwatch/vscode-ember/issues"
+  },
   "activationEvents": [
     "onLanguage:handlebars",
     "onLanguage:javascript",
@@ -46,10 +46,10 @@
     "@types/mocha": "^2.2.33",
     "@types/node": "^6.0.52",
     "typescript": "^2.1.5",
-    "vscode": "^1.0.3"
+    "vscode": "^1.1.14"
   },
   "dependencies": {
-    "@emberwatch/ember-language-server": "0.1.1",
-    "vscode-languageclient": "^3.0.3"
+    "@emberwatch/ember-language-server": "0.2.0",
+    "vscode-languageclient": "^4.1.3"
   }
 }
