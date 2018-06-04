@@ -14,7 +14,7 @@ export async function activate(context: ExtensionContext) {
   // The server is implemented in node
   let serverModule = context.asAbsolutePath(path.join('node_modules', '@emberwatch', 'ember-language-server', 'lib', 'start-server.js'));
   // The debug options for the server
-  let debugOptions = { execArgv: ["--nolazy", "--debug=6004"] };
+  let debugOptions = { execArgv: ["--nolazy", "--inspect=6004"] };
 
   // If the extension is launched in debug mode then the debug server options are used
   // Otherwise the run options are used
