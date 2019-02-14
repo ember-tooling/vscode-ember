@@ -1,18 +1,18 @@
 {
-  "name": "vscode-ember",
-  "displayName": "Ember Language Server",
+  "name": "vscode-ember-unstable",
+  "displayName": "Unstable Ember Language Server",
   "description": "Provides features like auto complete, goto definition and diagnostics for Ember.js projects",
-  "author": "Thomas Sauer <t-sauer@outlook.de>",
+  "author": "Thomas Sauer <t-sauer@outlook.de>, Aleksandr Kanunnikov <lifeart92@gmail.com>",
   "license": "MIT",
-  "version": "0.2.0",
-  "publisher": "emberjs",
+  "version": "0.2.1",
+  "publisher": "lifeart",
   "icon": "icon.png",
   "keywords": [
     "Ember.js",
     "Ember-CLI",
     "Glimmer",
     "Handlebars",
-    "Language server"
+    "Unstable Language server"
   ],
   "engines": {
     "vscode": "^1.22.2"
@@ -24,10 +24,10 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/emberwatch/vscode-ember"
+    "url": "https://github.com/lifeart/vscode-ember"
   },
   "bugs": {
-    "url": "https://github.com/emberwatch/vscode-ember/issues"
+    "url": "https://github.com/lifeart/vscode-ember/issues"
   },
   "activationEvents": [
     "onLanguage:handlebars",
@@ -49,7 +49,7 @@
     "vscode": "^1.1.14"
   },
   "dependencies": {
-    "@emberwatch/ember-language-server": "0.2.0",
+    "ember-language-server": "lifeart/ember-language-server#component-context-info",
     "vscode-languageclient": "^4.1.3"
   }
 }
