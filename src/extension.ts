@@ -12,7 +12,7 @@ import { LanguageClient, LanguageClientOptions, SettingMonitor, ServerOptions, T
 export async function activate(context: ExtensionContext) {
 
   // The server is implemented in node
-  let serverModule = context.asAbsolutePath(path.join('node_modules', 'ember-language-server', 'lib', 'start-server.js'));
+  let serverModule = context.asAbsolutePath(path.join('node_modules', '@emberwatch', 'ember-language-server', 'lib', 'start-server.js'));
   // The debug options for the server
   let debugOptions = { execArgv: ["--nolazy", "--inspect=6004"] };
 
