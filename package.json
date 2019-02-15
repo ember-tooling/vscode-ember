@@ -36,7 +36,9 @@
   ],
   "main": "./out/src/extension",
   "scripts": {
-    "vscode:prepublish": "npm run compile",
+	"vscode:prepublish": "npm run compile",
+	"package": "vsce package --yarn",
+	"vscode:publish": "vsce publish",
     "compile": "tsc -p ./",
     "watch": "tsc -watch -p ./",
     "update-vscode": "node ./node_modules/vscode/bin/install",
