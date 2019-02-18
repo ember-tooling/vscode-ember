@@ -5,17 +5,14 @@
 'use strict';
 
 import * as path from 'path';
-
 import { workspace, Disposable, ExtensionContext } from 'vscode';
 import { LanguageClient, LanguageClientOptions, SettingMonitor, ServerOptions, TransportKind, RevealOutputChannelOn } from 'vscode-languageclient';
 
 export async function activate(context: ExtensionContext) {
-
   // The server is implemented in node
-  let serverModule = context.asAbsolutePath(path.join('node_modules', '@emberwatch', 'ember-language-server', 'lib', 'start-server.js'));
+  let serverModule = context.asAbsolutePath(path.join('node_modules', '@lifeart', 'ember-language-server', 'lib', 'start-server.js'));
   // The debug options for the server
   let debugOptions = { execArgv: ["--nolazy", "--inspect=6004"] };
-
   // If the extension is launched in debug mode then the debug server options are used
   // Otherwise the run options are used
   let serverOptions: ServerOptions = {
@@ -26,7 +23,6 @@ export async function activate(context: ExtensionContext) {
   if (!await isEmberCliProject()) {
     return;
   }
-
   // Options to control the language client
   let clientOptions: LanguageClientOptions = {
     // Register the server for plain text documents
