@@ -119,24 +119,6 @@
     lodash "^4.17.11"
     to-fast-properties "^2.0.0"
 
-"@emberwatch/ember-language-server@lifeart/ember-language-server#component-context-info", "@lifeart/ember-language-server@lifeart/ember-language-server#component-context-info":
-  version "0.2.2"
-  resolved "https://codeload.github.com/lifeart/ember-language-server/tar.gz/073b41c2441fcc78ab886ea4320ed306afcd849d"
-  dependencies:
-    "@glimmer/syntax" "^0.38.1"
-    ast-types "^0.11.3"
-    babylon "^6.18.0"
-    ember-meta-explorer "^0.0.5"
-    fs-extra "^5.0.0"
-    fuzzaldrin "^2.1.0"
-    i "^0.3.5"
-    lodash "^4.17.11"
-    memoizee "^0.4.14"
-    util "^0.11.1"
-    vscode-languageserver "^4.1.2"
-    vscode-uri "^1.0.6"
-    walk-sync "^1.0.1"
-
 "@glimmer/interfaces@^0.38.1":
   version "0.38.1"
   resolved "https://registry.yarnpkg.com/@glimmer/interfaces/-/interfaces-0.38.1.tgz#5b1c174363396b99d6a6bddb35538151e4c4c989"
@@ -186,6 +168,24 @@
   integrity sha512-AT1dToybQxbY29XpkNra9/j7svq65ZNnSXmRs1zUKAarvgh6qxOBsnYeVBNrxBFduNuNJOxP8G0Y+nXEGrUoRQ==
   dependencies:
     "@glimmer/util" "^0.38.1"
+
+"@lifeart/ember-language-server@lifeart/ember-language-server#component-context-info":
+  version "0.2.2"
+  resolved "https://codeload.github.com/lifeart/ember-language-server/tar.gz/073b41c2441fcc78ab886ea4320ed306afcd849d"
+  dependencies:
+    "@glimmer/syntax" "^0.38.1"
+    ast-types "^0.11.3"
+    babylon "^6.18.0"
+    ember-meta-explorer "^0.0.5"
+    fs-extra "^5.0.0"
+    fuzzaldrin "^2.1.0"
+    i "^0.3.5"
+    lodash "^4.17.11"
+    memoizee "^0.4.14"
+    util "^0.11.1"
+    vscode-languageserver "^4.1.2"
+    vscode-uri "^1.0.6"
+    walk-sync "^1.0.1"
 
 "@simple-dom/interface@1.4.0":
   version "1.4.0"
