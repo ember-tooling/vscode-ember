@@ -44,7 +44,7 @@ export async function activate(context: ExtensionContext) {
 }
 
 async function isEmberCliProject(): Promise<boolean> {
-  const emberCliBuildFile = await workspace.findFiles('**/ember-cli-build.js')
+  const emberCliBuildFile = await workspace.findFiles('**/ember-cli-build.js', '**/{dist,tmp,node_modules}/**', 100)
 
   if (emberCliBuildFile.length < 1) {
     return false;
