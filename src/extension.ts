@@ -10,7 +10,7 @@ import { LanguageClient, LanguageClientOptions, SettingMonitor, ServerOptions, T
 
 export async function activate(context: ExtensionContext) {
   // The server is implemented in node
-  let serverModule = context.asAbsolutePath(path.join('node_modules', '@lifeart', 'ember-language-server', 'lib', 'start-server.js'));
+  let serverModule = context.asAbsolutePath(path.join('node_modules', '@emberwatch', 'ember-language-server', 'lib', 'start-server.js'));
   // The debug options for the server
   let debugOptions = { execArgv: ["--nolazy", "--inspect=6004"] };
   // If the extension is launched in debug mode then the debug server options are used
@@ -26,7 +26,7 @@ export async function activate(context: ExtensionContext) {
   // Options to control the language client
   let clientOptions: LanguageClientOptions = {
     // Register the server for plain text documents
-    documentSelector: ['handlebars', 'javascript'],
+    documentSelector: ['handlebars', 'javascript', 'typescript'],
     outputChannelName: 'Unstable Ember Language Server',
     revealOutputChannelOn: RevealOutputChannelOn.Never
   };
