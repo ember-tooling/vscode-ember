@@ -8,10 +8,16 @@ import * as path from "path";
 import {
   workspace,
   ExtensionContext,
+  CodeLens,
+  Range,
+  TextDocument,
+  CancellationToken,
   StatusBarItem,
   window,
   commands,
-  StatusBarAlignment
+  languages,
+  StatusBarAlignment,
+  Position
 } from "vscode";
 import {
   LanguageClient,
@@ -79,6 +85,42 @@ export async function activate(context: ExtensionContext) {
   ).start();
   context.subscriptions.push(disposable);
 
+
+  const langs = ['javascript', 'handlebars', 'typescript', 'hbs'];
+
+  
+  async function openRelatedFile(...args) {
+    console.log('...openRelatedFile', args);
+  }
+
+  context.subscriptions.push(commands.registerCommand('els.openRelatedFile', openRelatedFile));
+
+
+  async function provideCodeLenses(document: TextDocument, token: CancellationToken) {
+
+    return [
+      new CodeLens(new Range(new Position(0, 0), new Position(0, 0)), {
+        title: '> template',
+        command: 'els.openRelatedFile',
+        arguments: [ document.fileName, 'template' ]
+      }),
+      new CodeLens(new Range(new Position(0, 0), new Position(0, 0)), {
+        title: '> test',
+        command: 'els.openRelatedFile',
+        arguments: [ document.fileName, 'test' ]
+      }),
+      new CodeLens(new Range(new Position(0, 0), new Position(0, 0)), {
+        title: '> component',
+        command: 'els.openRelatedFile',
+        arguments: [ document.fileName, 'component' ]
+      })
+    ]
+}
+
+
+  langs.forEach(language => {
+    context.subscriptions.push(languages.registerCodeLensProvider(language, { provideCodeLenses }));
+  });
   // commands.
   // commands.executeCommand(myCommandId, "HELLO");
 }
