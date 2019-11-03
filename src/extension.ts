@@ -46,7 +46,9 @@ export async function activate(context: ExtensionContext) {
   };
 
   if (!(await isEmberCliProject())) {
-    return;
+    if (!(await isGlimmerXProject())) {
+      return;
+    }
   }
   // Options to control the language client
   let clientOptions: LanguageClientOptions = {
@@ -81,6 +83,19 @@ export async function activate(context: ExtensionContext) {
 
   // commands.
   // commands.executeCommand(myCommandId, "HELLO");
+}
+
+async function isGlimmerXProject(): Promise<boolean> {
+  const emberCliBuildFile = await workspace.findFiles(
+    "**/node_modules/@glimmerx/core/package.json", null,
+    5
+  );
+
+  if (emberCliBuildFile.length < 1) {
+    return false;
+  }
+
+  return true;
 }
 
 async function isEmberCliProject(): Promise<boolean> {
