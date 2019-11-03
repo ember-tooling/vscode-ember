@@ -87,7 +87,7 @@ export async function activate(context: ExtensionContext) {
 
 async function isGlimmerXProject(): Promise<boolean> {
   const emberCliBuildFile = await workspace.findFiles(
-    "**/node_modules/@glimmerx/core/package.json", null,
+    "**/node_modules/{glimmer-lite-core,@glimmerx/core}/package.json", "**/{dist,tmp,.git,.cache}/**",
     5
   );
 
@@ -101,7 +101,7 @@ async function isGlimmerXProject(): Promise<boolean> {
 async function isEmberCliProject(): Promise<boolean> {
   const emberCliBuildFile = await workspace.findFiles(
     "**/ember-cli-build.js",
-    "**/{dist,tmp,node_modules}/**",
+    "**/{dist,tmp,node_modules,.git,.cache}/**",
     100
   );
 
