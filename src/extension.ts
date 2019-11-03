@@ -102,17 +102,17 @@ export async function activate(context: ExtensionContext) {
       new CodeLens(new Range(new Position(0, 0), new Position(0, 0)), {
         title: '> template',
         command: 'els.openRelatedFile',
-        arguments: [ document.fileName, 'template' ]
+        arguments: [ document.uri, 'template' ]
       }),
       new CodeLens(new Range(new Position(0, 0), new Position(0, 0)), {
         title: '> test',
         command: 'els.openRelatedFile',
-        arguments: [ document.fileName, 'test' ]
+        arguments: [ document.uri, 'test' ]
       }),
       new CodeLens(new Range(new Position(0, 0), new Position(0, 0)), {
         title: '> component',
         command: 'els.openRelatedFile',
-        arguments: [ document.fileName, 'component' ]
+        arguments: [ document.uri, 'component' ]
       })
     ]
 }
