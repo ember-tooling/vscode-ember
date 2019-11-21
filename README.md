@@ -4,6 +4,14 @@ This is the VSCode extension to use the [Unstable Ember Language Server](https:/
 
 ![preview](preview.gif)
 
+## Best with
+
+* [Glimmer Templates Syntax for VS Code](https://marketplace.visualstudio.com/items?itemName=lifeart.vscode-glimmer-syntax)
+* [Prettier for Handlebars](https://marketplace.visualstudio.com/items?itemName=Alonski.prettier-for-handlebars-vscode)
+* [Glimmer JS/TS Templates Syntax for VS Code](https://marketplace.visualstudio.com/items?itemName=chiragpat.vscode-glimmer)
+
+
+
 ## Features
 
 - Autocomplete (including installed addons and in-repo addons)

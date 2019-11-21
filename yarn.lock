@@ -892,12 +892,13 @@
     lodash "^4.17.13"
     to-fast-properties "^2.0.0"
 
-"@emberwatch/ember-language-server@lifeart/ember-language-server#27e3024":
+"@emberwatch/ember-language-server@lifeart/ember-language-server#f0904cd":
   version "0.2.2"
-  resolved "https://codeload.github.com/lifeart/ember-language-server/tar.gz/27e302476d076051103eab94a90b2b308d53ca93"
+  resolved "https://codeload.github.com/lifeart/ember-language-server/tar.gz/f0904cd80d3a834e7e07d52d95dcf44a69f45944"
   dependencies:
     "@glimmer/syntax" "^0.43.0"
     ast-types "^0.13.2"
+    dag-map "^2.0.2"
     ember-meta-explorer "^0.1.0"
     extract-tagged-template-literals "^1.0.1"
     fs-extra "^8.1.0"
@@ -1316,6 +1317,11 @@ d@1, d@^1.0.1:
   dependencies:
     es5-ext "^0.10.50"
     type "^1.0.1"
+
+dag-map@^2.0.2:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/dag-map/-/dag-map-2.0.2.tgz#9714b472de82a1843de2fba9b6876938cab44c68"
+  integrity sha1-lxS0ct6CoYQ94vuptodpOMq0TGg=
 
 dashdash@^1.12.0:
   version "1.14.1"
