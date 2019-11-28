@@ -8,8 +8,6 @@ This is the VSCode extension to use the [Unstable Ember Language Server](https:/
 
 * [Glimmer Templates Syntax for VS Code](https://marketplace.visualstudio.com/items?itemName=lifeart.vscode-glimmer-syntax)
 * [Prettier for Handlebars](https://marketplace.visualstudio.com/items?itemName=Alonski.prettier-for-handlebars-vscode)
-* [Glimmer JS/TS Templates Syntax for VS Code](https://marketplace.visualstudio.com/items?itemName=chiragpat.vscode-glimmer)
-
 
 
 ## Features
@@ -17,9 +15,14 @@ This is the VSCode extension to use the [Unstable Ember Language Server](https:/
 - Autocomplete (including installed addons and in-repo addons)
   - Components (Curly, Angle Bracket)
   - Component Arguments (if used in template)
+  - Services
+  - Route/Controler transition functions route names
+  - Model names (store methods, model relation definition)
+  - Transform names (model definition)
   - Helpers
   - Modifiers
-  - Local paths (`this...`)
+  - Get / Set / ... / Computed macros
+  - Local paths in templates (`this...`)
   - Route autocompletion in `link-to`
   - `<LinkTo />` @route argument autocomplete
 
@@ -47,3 +50,9 @@ This is the VSCode extension to use the [Unstable Ember Language Server](https:/
   - TypeScript
 
 - Diagnostics for ember-template-lint (if it is included in a project)
+
+
+
+## Addons
+
+* [els-a11y-addon](https://github.com/lifeart/els-a11y-addon) - Ember Language Server a11y addon.

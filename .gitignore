@@ -1,3 +1,5 @@
 out
 server
 node_modules
+vscode-ember-unstable*
+.vsix
