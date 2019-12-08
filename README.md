@@ -52,7 +52,8 @@ This is the VSCode extension to use the [Unstable Ember Language Server](https:/
 - Diagnostics for ember-template-lint (if it is included in a project)
 
 
-
 ## Addons
 
 * [els-a11y-addon](https://github.com/lifeart/els-a11y-addon) - Ember Language Server a11y addon.
+* [els-addon-typed-templates](https://github.com/lifeart/els-addon-typed-templates) - Typed Templates for Ember.
+* [els-addon-docs](https://github.com/lifeart/els-addon-docs) - Ember Language Server Addon Docs Completion Provider.
