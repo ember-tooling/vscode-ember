@@ -72,6 +72,18 @@ export async function activate(context: ExtensionContext) {
     })
   );
 
+  context.subscriptions.push(commands.registerCommand('els.runInEmberCLI', async ()=> {
+    let what = await window.showInputBox({ placeHolder: 'Enter ember-cli command' });
+    if (!what) {
+      return;
+    }
+    try {
+      let document = window.activeTextEditor.document.uri.fsPath
+      commands.executeCommand('els.executeInEmberCLI', document, what);
+    } catch(e) {
+      //
+    }
+  }));
   // Create the language client and start the client.
   let disposable = new LanguageClient(
     "emberLanguageServer",
@@ -80,9 +92,6 @@ export async function activate(context: ExtensionContext) {
     clientOptions
   ).start();
   context.subscriptions.push(disposable);
-
-  // commands.
-  // commands.executeCommand(myCommandId, "HELLO");
 }
 
 async function isGlimmerXProject(): Promise<boolean> {
