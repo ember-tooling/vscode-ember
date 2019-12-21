@@ -1,6 +1,12 @@
 # vscode-ember
 
-This is the VSCode extension to use the [Unstable Ember Language Server](https://github.com/lifeart/ember-language-server).  
+
+This is the VSCode extension to use the [Unstable Ember Language Server](https://github.com/lifeart/ember-language-server). 
+
+`Unstable Ember Language Server` is full-featured fork of [Ember Language Server](https://github.com/emberwatch/ember-language-server). It's `stable` and `extremely` power-featured.
+
+
+All `Ember Language Server` features included.
 
 ![preview](preview.gif)
 

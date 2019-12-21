@@ -55,7 +55,10 @@ export async function activate(context: ExtensionContext) {
     // Register the server for plain text documents
     documentSelector: ["handlebars", "javascript", "typescript"],
     outputChannelName: "Unstable Ember Language Server",
-    revealOutputChannelOn: RevealOutputChannelOn.Never
+    revealOutputChannelOn: RevealOutputChannelOn.Never,
+    synchronize: {
+      fileEvents: workspace.createFileSystemWatcher('**/*.{js,ts,hbs}')
+    }
   };
 
   const myCommandId = "els.setStatusBarText";
