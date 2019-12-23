@@ -8,10 +8,17 @@ import * as path from "path";
 import {
   workspace,
   ExtensionContext,
+  CodeLens,
+  Range,
+  TextDocument,
+  CancellationToken,
   StatusBarItem,
   window,
   commands,
-  StatusBarAlignment
+  languages,
+  StatusBarAlignment,
+  Uri,
+  Position
 } from "vscode";
 import {
   LanguageClient,
@@ -95,6 +102,61 @@ export async function activate(context: ExtensionContext) {
     clientOptions
   ).start();
   context.subscriptions.push(disposable);
+
+  const langs = ['javascript', 'typescript', 'handlebars'];
+
+  
+  async function openRelatedFile(...rawFile) {
+    let url = Uri.file(rawFile.join(''));
+    commands.executeCommand('vscode.open', url);
+  }
+
+  context.subscriptions.push(commands.registerCommand('els.openRelatedFile', openRelatedFile));
+
+
+  async function provideCodeLenses(document: TextDocument, token: CancellationToken) {
+    let relatedFiles: any = [];
+    try {
+      relatedFiles = await  commands.executeCommand('els.getRelatedFiles', document.uri.fsPath);
+      // window.showInformationMessage(relatedFiles[0]);
+    } catch (e) {
+      // window.showErrorMessage(e.toString());
+    }
+    if (relatedFiles.length === 1) {
+      return;
+    }
+    return relatedFiles.map((f)=>{
+      let normPath = f.split('\\').join('/');
+      let fsPath = document.uri.fsPath.split('\\').join('/');
+      const isActive = fsPath === normPath;
+      let name = normPath.endsWith('.hbs') ? 'template' : 'script';
+      if (normPath.includes('/routes/')) {
+        name = 'route';
+      } else if (normPath.includes('/controllers/')) {
+        name = 'controller';
+      } else if (normPath.includes('/tests/')) {
+        name = 'test';
+      }
+      if (isActive) {
+        name = '[_' + name + '_]';
+      } else {
+        name = '[ ' + name + ' ]';
+      }
+      return  new CodeLens(new Range(new Position(0, 0), new Position(0, 0)), {
+        title: name,
+        tooltip: 'Ember: ' + f,
+        command: 'els.openRelatedFile',
+        arguments: f.split('')
+      });
+    });
+}
+
+
+  langs.forEach(language => {
+    context.subscriptions.push(languages.registerCodeLensProvider(language, { provideCodeLenses }));
+  });
+  // commands.
+  // commands.executeCommand(myCommandId, "HELLO");
 }
 
 async function isGlimmerXProject(): Promise<boolean> {
