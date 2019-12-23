@@ -4,6 +4,42 @@ out/test/**
 test/**
 src/**
 **/*.map
+**/*.ts
+**/*.d.ts
+node_modules/**/*.flow
+node_modules/**/.editorconfig
+node_modules/**/.travis.yml
+node_modules/**/.eslintrc
+node_modules/**/.vscode
+node_modules/**/test
+node_modules/**/*.debug.js
 .gitignore
+.vsix
 tsconfig.json
 vsc-extension-quickstart.md
+node_modules/rimraf
+node_modules/@types
+# node_modules/uglify-js
+# node_modules/caniuse-lite
+# node_modules/handlebars
+# node_modules/@glimmer/interfaces
+# node_modules/regenerate-unicode-properties
+# node_modules/neo-async
+# node_modules/node-releases
+# node_modules/source-map
+# node_modules/ast-types
+# node_modules/@babel/cli
+# node_modules/@babel/plugin-transform-object-super
+# node_modules/@babel/plugin-transform-modules-amd
+# node_modules/@babel/plugin-transform-template-literals
+# node_modules/@babel/plugin-transform-*/
+# node_modules/snapdragon
+# node_modules/chokidar
+# node_modules/regenerator-transform
+# node_modules/*/test
+# node_modules/*/tests
+# node_modules/*/readme.md
+# node_modules/*/yarn.lock
+# node_modules/*/README.md
+# node_modules/*/CHANGELOG.md
+vscode-ember-unstable*

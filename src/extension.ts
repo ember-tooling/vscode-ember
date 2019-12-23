@@ -53,14 +53,19 @@ export async function activate(context: ExtensionContext) {
   };
 
   if (!(await isEmberCliProject())) {
-    return;
+    if (!(await isGlimmerXProject())) {
+      return;
+    }
   }
   // Options to control the language client
   let clientOptions: LanguageClientOptions = {
     // Register the server for plain text documents
     documentSelector: ["handlebars", "javascript", "typescript"],
     outputChannelName: "Unstable Ember Language Server",
-    revealOutputChannelOn: RevealOutputChannelOn.Never
+    revealOutputChannelOn: RevealOutputChannelOn.Never,
+    synchronize: {
+      fileEvents: workspace.createFileSystemWatcher('**/*.{js,ts,hbs}')
+    }
   };
 
   const myCommandId = "els.setStatusBarText";
@@ -77,6 +82,18 @@ export async function activate(context: ExtensionContext) {
     })
   );
 
+  context.subscriptions.push(commands.registerCommand('els.runInEmberCLI', async ()=> {
+    let what = await window.showInputBox({ placeHolder: 'Enter ember-cli command' });
+    if (!what) {
+      return;
+    }
+    try {
+      let document = window.activeTextEditor.document.uri.fsPath
+      commands.executeCommand('els.executeInEmberCLI', document, what);
+    } catch(e) {
+      //
+    }
+  }));
   // Create the language client and start the client.
   let disposable = new LanguageClient(
     "emberLanguageServer",
@@ -85,8 +102,6 @@ export async function activate(context: ExtensionContext) {
     clientOptions
   ).start();
   context.subscriptions.push(disposable);
-  
-
 
   const langs = ['javascript', 'typescript', 'handlebars'];
 
@@ -144,10 +159,23 @@ export async function activate(context: ExtensionContext) {
   // commands.executeCommand(myCommandId, "HELLO");
 }
 
+async function isGlimmerXProject(): Promise<boolean> {
+  const emberCliBuildFile = await workspace.findFiles(
+    "**/node_modules/{glimmer-lite-core,@glimmerx/core}/package.json", "**/{dist,tmp,.git,.cache}/**",
+    5
+  );
+
+  if (emberCliBuildFile.length < 1) {
+    return false;
+  }
+
+  return true;
+}
+
 async function isEmberCliProject(): Promise<boolean> {
   const emberCliBuildFile = await workspace.findFiles(
     "**/ember-cli-build.js",
-    "**/{dist,tmp,node_modules}/**",
+    "**/{dist,tmp,node_modules,.git,.cache}/**",
     100
   );
 
