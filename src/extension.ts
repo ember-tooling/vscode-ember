@@ -129,18 +129,28 @@ export async function activate(context: ExtensionContext) {
       let normPath = f.split('\\').join('/');
       let fsPath = document.uri.fsPath.split('\\').join('/');
       const isActive = fsPath === normPath;
+      const isTest = normPath.includes('/tests/');
+      const isAddon = normPath.includes('/addon/');
       let name = normPath.endsWith('.hbs') ? 'template' : 'script';
       if (normPath.includes('/routes/')) {
         name = 'route';
       } else if (normPath.includes('/controllers/')) {
         name = 'controller';
-      } else if (normPath.includes('/tests/')) {
-        name = 'test';
+      }
+      if (isAddon) {
+        name = `addon:${name}`;
+      }
+      if (isTest) {
+        if (['script', 'template'].includes(name)) {
+          name = 'test';
+        } else {
+          name = `${name}:test`;
+        }
       }
       if (isActive) {
-        name = '[_' + name + '_]';
+        name = '_' + name + '_';
       } else {
-        name = '[ ' + name + ' ]';
+        name = ' ' + name + ' ';
       }
       return  new CodeLens(new Range(new Position(0, 0), new Position(0, 0)), {
         title: name,
