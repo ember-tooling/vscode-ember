@@ -132,6 +132,9 @@ export async function activate(context: ExtensionContext) {
       const isTest = normPath.includes('/tests/');
       const isAddon = normPath.includes('/addon/');
       let name = normPath.endsWith('.hbs') ? 'template' : 'script';
+      if (normPath.endsWith('.css') || normPath.endsWith('.less') || normPath.endsWith('.scss')) {
+        name = 'style';
+      }
       if (normPath.includes('/routes/')) {
         name = 'route';
       } else if (normPath.includes('/controllers/')) {
