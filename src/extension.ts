@@ -64,7 +64,7 @@ export async function activate(context: ExtensionContext) {
     outputChannelName: "Unstable Ember Language Server",
     revealOutputChannelOn: RevealOutputChannelOn.Never,
     synchronize: {
-      fileEvents: workspace.createFileSystemWatcher('**/*.{js,ts,hbs}')
+      fileEvents: workspace.createFileSystemWatcher('**/*.{js,ts,hbs,less,scss,css}')
     }
   };
 
@@ -103,7 +103,7 @@ export async function activate(context: ExtensionContext) {
   ).start();
   context.subscriptions.push(disposable);
 
-  const langs = ['javascript', 'typescript', 'handlebars'];
+  const langs = ['javascript', 'typescript', 'handlebars', 'css', 'less', 'scss'];
 
   
   async function openRelatedFile(...rawFile) {
@@ -118,7 +118,7 @@ export async function activate(context: ExtensionContext) {
     let relatedFiles: any = [];
     try {
       relatedFiles = await  commands.executeCommand('els.getRelatedFiles', document.uri.fsPath);
-      // window.showInformationMessage(relatedFiles[0]);
+      // window.showInformationMessage(JSON.stringify(relatedFiles));
     } catch (e) {
       // window.showErrorMessage(e.toString());
     }
