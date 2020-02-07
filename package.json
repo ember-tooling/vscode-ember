@@ -4,7 +4,7 @@
   "description": "Provides features like auto complete, goto definition and diagnostics for Ember.js projects",
   "author": "Thomas Sauer <t-sauer@outlook.de>, Aleksandr Kanunnikov <lifeart92@gmail.com>",
   "license": "MIT",
-  "version": "0.3.6",
+  "version": "0.3.7",
   "publisher": "lifeart",
   "icon": "icon.png",
   "keywords": [
@@ -42,7 +42,25 @@
         "command": "els.runInEmberCLI",
         "title": "Ember: Execute ember-cli command"
       }
-    ]
+    ],
+    "configuration": {
+      "title": "Unstable Ember Language Server",
+      "properties": {
+        "els.codeLens.relatedFiles": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show related files as Lens on first line."
+        },
+        "els.local.addons": {
+          "type": "array",
+          "default": [],
+          "items": {
+            "type": "string"
+          },
+          "description": "List of UELS addons paths to include."
+        }
+      }
+    }
   },
   "main": "./out/src/extension",
   "scripts": {
@@ -63,7 +81,7 @@
     "vscode": "^1.1.29"
   },
   "dependencies": {
-    "@emberwatch/ember-language-server": "lifeart/ember-language-server#afb10ee7a320f2f7d422124ce8a0dfca49b5c29b",
+    "@emberwatch/ember-language-server": "lifeart/ember-language-server#d924939eaffeb6e7c1960ed9390443954b70f144",
     "vscode-languageclient": "^4.1.3"
   }
 }

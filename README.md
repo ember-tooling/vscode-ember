@@ -64,3 +64,15 @@ All `Ember Language Server` features included.
 * [els-addon-typed-templates](https://github.com/lifeart/els-addon-typed-templates) - Typed Templates for Ember.
 * [els-addon-docs](https://github.com/lifeart/els-addon-docs) - Ember Language Server Addon Docs Completion Provider.
 * [ember-fast-cli](https://github.com/lifeart/ember-fast-cli) - Addon for Ember-cli commands execution.
+
+## Settings
+
+* `els.codeLens.relatedFiles` - disable / enable related files
+* `els.local.addons` - globally defined local language server addons entry folders, for example:
+   
+```js
+{
+    "els.local.addons": ["C:\\Users\\ember\\els-addon-typed-templates"],
+}
+
+```
