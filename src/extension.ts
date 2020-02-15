@@ -103,10 +103,16 @@ export async function activate(context: ExtensionContext) {
         return;
       }
       try {
-        let document = window.activeTextEditor.document.uri.fsPath;
+        let document = workspace.rootPath;
+        if (!document && workspace.workspaceFolders && workspace.workspaceFolders.length) {
+          document = workspace.workspaceFolders[0].uri.fsPath;
+        }
+        if (window.activeTextEditor) {
+          document = window.activeTextEditor.document.uri.fsPath;
+        }
         commands.executeCommand("els.executeInEmberCLI", document, what);
       } catch (e) {
-        //
+        window.showErrorMessage(e.toString());
       }
     })
   );
