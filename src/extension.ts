@@ -5,7 +5,6 @@
 "use strict";
 
 import * as path from "path";
-import * as vscode from "vscode";
 import {
   workspace,
   ExtensionContext,
@@ -89,8 +88,10 @@ export async function activate(context: ExtensionContext) {
   // Push the disposable to the context's subscriptions so that the
   // client can be deactivated on extension deactivation
   context.subscriptions.push(
-    commands.registerCommand(myCommandId, text => {
-      ExtStatusBarItem.text = "$(telescope) " + text;
+    commands.registerCommand(myCommandId, async () => {
+      ExtStatusBarItem.text = "$(telescope) " + 'Reloading projects...';
+      await commands.executeCommand("els.reloadProject");
+      ExtStatusBarItem.text = "$(telescope) " + 'Ember';
     })
   );
 
@@ -126,7 +127,7 @@ export async function activate(context: ExtensionContext) {
 
   disposable.onReady().then(() => {
     commands.executeCommand("els.setConfig", config);
-    commands.executeCommand(myCommandId, "Ember");
+    ExtStatusBarItem.text = "$(telescope) " + 'Ember';
   });
   context.subscriptions.push(disposable.start());
 
