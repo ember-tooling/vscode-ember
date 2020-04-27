@@ -5,21 +5,18 @@
 "use strict";
 
 import * as path from "path";
+import { COMMANDS as ELS_COMMANDS } from './constants';
 import {
   workspace,
   ExtensionContext,
-  CodeLens,
-  Range,
-  TextDocument,
-  CancellationToken,
   StatusBarItem,
   window,
   commands,
   languages,
   StatusBarAlignment,
-  Uri,
-  Position
+  Uri
 } from "vscode";
+import { isEmberCliProject, isGlimmerXProject } from './workspace-utils';
 import {
   LanguageClient,
   LanguageClientOptions,
@@ -27,6 +24,7 @@ import {
   TransportKind,
   RevealOutputChannelOn
 } from "vscode-languageclient";
+import { provideCodeLenses } from './lenses';
 let ExtStatusBarItem: StatusBarItem;
 export async function activate(context: ExtensionContext) {
   // The server is implemented in node
@@ -78,25 +76,23 @@ export async function activate(context: ExtensionContext) {
     }
   };
 
-  const myCommandId = "els.setStatusBarText";
-
   ExtStatusBarItem = window.createStatusBarItem(StatusBarAlignment.Right, 10);
   ExtStatusBarItem.text = "$(telescope) Ember Loading...";
-  ExtStatusBarItem.command = myCommandId;
+  ExtStatusBarItem.command = ELS_COMMANDS.SET_STATUS_BAR_TEXT;
   ExtStatusBarItem.show();
 
   // Push the disposable to the context's subscriptions so that the
   // client can be deactivated on extension deactivation
   context.subscriptions.push(
-    commands.registerCommand(myCommandId, async () => {
+    commands.registerCommand(ELS_COMMANDS.SET_STATUS_BAR_TEXT, async () => {
       ExtStatusBarItem.text = "$(telescope) " + 'Reloading projects...';
-      await commands.executeCommand("els.reloadProject");
+      await commands.executeCommand(ELS_COMMANDS.RELOAD_PROJECT);
       ExtStatusBarItem.text = "$(telescope) " + 'Ember';
     })
   );
 
   context.subscriptions.push(
-    commands.registerCommand("els.runInEmberCLI", async () => {
+    commands.registerCommand(ELS_COMMANDS.RUN_IN_EMBER_CLI, async () => {
       let what = await window.showInputBox({
         placeHolder: "Enter ember-cli command"
       });
@@ -111,7 +107,7 @@ export async function activate(context: ExtensionContext) {
         if (window.activeTextEditor) {
           document = window.activeTextEditor.document.uri.fsPath;
         }
-        commands.executeCommand("els.executeInEmberCLI", document, what);
+        commands.executeCommand(ELS_COMMANDS.EXECUTE_IN_EMBER_CLI, document, what);
       } catch (e) {
         window.showErrorMessage(e.toString());
       }
@@ -126,7 +122,7 @@ export async function activate(context: ExtensionContext) {
   );
 
   disposable.onReady().then(() => {
-    commands.executeCommand("els.setConfig", config);
+    commands.executeCommand(ELS_COMMANDS.SET_CONFIG, config);
     ExtStatusBarItem.text = "$(telescope) " + 'Ember';
   });
   context.subscriptions.push(disposable.start());
@@ -136,65 +132,7 @@ export async function activate(context: ExtensionContext) {
     commands.executeCommand("vscode.open", url);
   }
 
-  async function provideCodeLenses(
-    document: TextDocument,
-    token: CancellationToken
-  ) {
-    let relatedFiles: any = [];
-    try {
-      relatedFiles = await commands.executeCommand(
-        "els.getRelatedFiles",
-        document.uri.fsPath
-      );
-      // window.showInformationMessage(JSON.stringify(relatedFiles));
-    } catch (e) {
-      // window.showErrorMessage(e.toString());
-    }
-    if (relatedFiles.length === 1) {
-      return;
-    }
-    return relatedFiles.map(f => {
-      let normPath = f.split("\\").join("/");
-      let fsPath = document.uri.fsPath.split("\\").join("/");
-      const isActive = fsPath === normPath;
-      const isTest = normPath.includes("/tests/");
-      const isAddon = normPath.includes("/addon/");
-      let name = normPath.endsWith(".hbs") ? "template" : "script";
-      if (
-        normPath.endsWith(".css") ||
-        normPath.endsWith(".less") ||
-        normPath.endsWith(".scss")
-      ) {
-        name = "style";
-      }
-      if (normPath.includes("/routes/")) {
-        name = "route";
-      } else if (normPath.includes("/controllers/")) {
-        name = "controller";
-      }
-      if (isAddon) {
-        name = `addon:${name}`;
-      }
-      if (isTest) {
-        if (["script", "template"].includes(name)) {
-          name = "test";
-        } else {
-          name = `${name}:test`;
-        }
-      }
-      if (isActive) {
-        name = "_" + name + "_";
-      } else {
-        name = " " + name + " ";
-      }
-      return new CodeLens(new Range(new Position(0, 0), new Position(0, 0)), {
-        title: name,
-        tooltip: "Ember: " + f,
-        command: "els.openRelatedFile",
-        arguments: f.split("")
-      });
-    });
-  }
+ 
 
   if (config.codeLens.relatedFiles) {
     const langs = [
@@ -206,7 +144,7 @@ export async function activate(context: ExtensionContext) {
       "scss"
     ];
     context.subscriptions.push(
-      commands.registerCommand("els.openRelatedFile", openRelatedFile)
+      commands.registerCommand(ELS_COMMANDS.OPEN_RELATED_FILE, openRelatedFile)
     );
     langs.forEach(language => {
       context.subscriptions.push(
@@ -215,38 +153,5 @@ export async function activate(context: ExtensionContext) {
     });
   }
 
-  // commands.executeCommand("els.setConfig", config);
-  // setTimeout(()=>{
-  //   commands.executeCommand("els.setConfig", config);
-  // },5000)
-  // commands.
-  // commands.executeCommand(myCommandId, "HELLO");
 }
 
-async function isGlimmerXProject(): Promise<boolean> {
-  const emberCliBuildFile = await workspace.findFiles(
-    "**/node_modules/{glimmer-lite-core,@glimmerx/core}/package.json",
-    "**/{dist,tmp,.git,.cache}/**",
-    5
-  );
-
-  if (emberCliBuildFile.length < 1) {
-    return false;
-  }
-
-  return true;
-}
-
-async function isEmberCliProject(): Promise<boolean> {
-  const emberCliBuildFile = await workspace.findFiles(
-    "**/ember-cli-build.js",
-    "**/{dist,tmp,node_modules,.git,.cache}/**",
-    100
-  );
-
-  if (emberCliBuildFile.length < 1) {
-    return false;
-  }
-
-  return true;
-}
