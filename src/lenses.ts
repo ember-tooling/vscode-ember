@@ -21,6 +21,7 @@ function lenseNameFromPath(document, f) {
     const isActive = fsPath === normPath;
     const isTest = normPath.includes("/tests/");
     const isAddon = normPath.includes("/addon/");
+    const isComponent = normPath.includes("/components/");
     let name = normPath.endsWith(".hbs") ? "template" : "script";
     if (
       normPath.endsWith(".css") ||
@@ -29,10 +30,12 @@ function lenseNameFromPath(document, f) {
     ) {
       name = "style";
     }
-    if (normPath.includes("/routes/")) {
-      name = "route";
-    } else if (normPath.includes("/controllers/")) {
-      name = "controller";
+    if (!isComponent) {
+      if (normPath.includes("/routes/")) {
+        name = "route";
+      } else if (normPath.includes("/controllers/")) {
+        name = "controller";
+      }
     }
     if (isAddon) {
       name = `addon:${name}`;
