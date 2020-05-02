@@ -37,6 +37,14 @@
     "onCommand:els.runInEmberCLI"
   ],
   "contributes": {
+    "views": {
+      "explorer": [
+        {
+          "id": "els.fileUsages",
+          "name": "Ember File Usages"
+        }
+      ]
+    },
     "commands": [
       {
         "command": "els.runInEmberCLI",

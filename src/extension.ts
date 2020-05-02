@@ -6,6 +6,7 @@
 
 import * as path from "path";
 import { COMMANDS as ELS_COMMANDS } from './constants';
+import { UsagesProvider } from './usages-provider';
 import {
   workspace,
   ExtensionContext,
@@ -121,9 +122,22 @@ export async function activate(context: ExtensionContext) {
     clientOptions
   );
 
+  const fileUsagesProvider = new UsagesProvider();
+
+
   disposable.onReady().then(() => {
     commands.executeCommand(ELS_COMMANDS.SET_CONFIG, config);
     ExtStatusBarItem.text = "$(telescope) " + 'Ember';
+
+    window.onDidChangeActiveTextEditor(()=>{
+      if (window.activeTextEditor) {
+        fileUsagesProvider.refresh();
+      }
+    });
+    window.createTreeView('els.fileUsages', {
+      treeDataProvider: fileUsagesProvider
+    });
+
   });
   context.subscriptions.push(disposable.start());
 
@@ -132,7 +146,7 @@ export async function activate(context: ExtensionContext) {
     commands.executeCommand("vscode.open", url);
   }
 
- 
+
 
   if (config.codeLens.relatedFiles) {
     const langs = [
