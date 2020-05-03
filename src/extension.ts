@@ -134,9 +134,10 @@ export async function activate(context: ExtensionContext) {
         fileUsagesProvider.refresh();
       }
     });
-    window.createTreeView('els.fileUsages', {
+    let treeView = window.createTreeView('els.fileUsages', {
       treeDataProvider: fileUsagesProvider
     });
+    fileUsagesProvider.setView(treeView);
 
   });
   context.subscriptions.push(disposable.start());

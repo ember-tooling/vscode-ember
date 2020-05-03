@@ -7,7 +7,10 @@ export class UsagesProvider implements vscode.TreeDataProvider<Dependency> {
 
   private _onDidChangeTreeData: vscode.EventEmitter<Dependency | undefined> = new vscode.EventEmitter<Dependency | undefined>();
   readonly onDidChangeTreeData: vscode.Event<Dependency | undefined> = this._onDidChangeTreeData.event;
-
+  private view !: vscode.TreeView<Dependency>;
+  setView(view: vscode.TreeView<Dependency>) {
+    this.view = view;
+  }
   refresh() {
     this._onDidChangeTreeData.fire();
   }
@@ -20,9 +23,16 @@ export class UsagesProvider implements vscode.TreeDataProvider<Dependency> {
     if (element) {
       return [];
     } else {
-      const files = await vscode.commands.executeCommand(ELS_COMMANDS.GET_RELATED_FILES, vscode.window.activeTextEditor.document.uri.fsPath);
+      const files: any = await vscode.commands.executeCommand(ELS_COMMANDS.GET_KIND_USAGES, vscode.window.activeTextEditor.document.uri.fsPath);
+      if (this.view) {
+        if (files.name && Array.isArray(files.usages) && files.usages.length) {
+          (this.view as any).message = `${files.name} [${files.type}]`;
+        } else {
+          (this.view as any).message = 'No other usages found..';
+        }
+      }
       if (files) {
-        const result = await this.getDeps(files as string[]);
+        const result = await this.getDeps(files.usages);
         return result;
       } else {
         return [];
@@ -33,11 +43,12 @@ export class UsagesProvider implements vscode.TreeDataProvider<Dependency> {
   /**
    * Given the path to package.json, read all its dependencies and devDependencies.
    */
-  private getDeps(relatedFiles: string[]): Dependency[] {
-    return relatedFiles.map((filePath) => {
-      const normalized = filePath.split('\\').join('/');
-      const name = normalized.split('/').pop();
-      return new Dependency(name, normalized, vscode.TreeItemCollapsibleState.None);
+  private getDeps(kindUsages: any): Dependency[] {
+    if (!Array.isArray(kindUsages)) {
+      return [];
+    }
+    return kindUsages.map(({name, type, path}) => {
+      return new Dependency(name, type, path, vscode.TreeItemCollapsibleState.None);
     });
   }
 }
@@ -45,6 +56,7 @@ export class UsagesProvider implements vscode.TreeDataProvider<Dependency> {
 class Dependency extends vscode.TreeItem {
   constructor(
     public readonly label: string,
+    public readonly type: string,
     private fullPath: string,
     public readonly collapsibleState: vscode.TreeItemCollapsibleState
   ) {
@@ -53,7 +65,7 @@ class Dependency extends vscode.TreeItem {
 
 
   get tooltip(): string {
-    return `${this.label}-${this.fullPath}`;
+    return `${this.label} [${this.type}]`;
   }
 
   get contextValue() {
@@ -61,7 +73,7 @@ class Dependency extends vscode.TreeItem {
   }
 
   get description(): string {
-    return this.fullPath;
+    return this.type;
   }
   get command(): vscode.Command {
     return {
