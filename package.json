@@ -89,7 +89,7 @@
     "vscode": "^1.1.29"
   },
   "dependencies": {
-    "@emberwatch/ember-language-server": "lifeart/ember-language-server#a6e91d52be178ca5160c2014485c4a130bbe4717",
+    "@emberwatch/ember-language-server": "lifeart/ember-language-server#ba2346eace6929a99fc00bd816a2295cc95795a0",
     "vscode-languageclient": "^6.1.1"
   }
 }

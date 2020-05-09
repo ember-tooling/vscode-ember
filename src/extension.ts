@@ -14,6 +14,7 @@ import {
   window,
   commands,
   languages,
+  InputBoxOptions,
   StatusBarAlignment,
   Uri
 } from "vscode";
@@ -89,6 +90,24 @@ export async function activate(context: ExtensionContext) {
       ExtStatusBarItem.text = "$(telescope) " + 'Reloading projects...';
       await commands.executeCommand(ELS_COMMANDS.RELOAD_PROJECT);
       ExtStatusBarItem.text = "$(telescope) " + 'Ember';
+    })
+  );
+
+  context.subscriptions.push(
+    commands.registerCommand(ELS_COMMANDS.GET_USER_INPUT, async (opts: InputBoxOptions, callbackCommandName: string, tail: any) => {
+      try {
+        let what = await window.showInputBox(opts);
+        let document = workspace.rootPath;
+        if (!document && workspace.workspaceFolders && workspace.workspaceFolders.length) {
+          document = workspace.workspaceFolders[0].uri.fsPath;
+        }
+        if (window.activeTextEditor) {
+          document = window.activeTextEditor.document.uri.fsPath;
+        }
+        commands.executeCommand(callbackCommandName, document, what, tail);
+      } catch(e) {
+        window.showErrorMessage(e.toString());
+      }
     })
   );
 

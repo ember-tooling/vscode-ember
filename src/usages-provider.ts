@@ -23,6 +23,9 @@ export class UsagesProvider implements vscode.TreeDataProvider<Dependency> {
     if (element) {
       return [];
     } else {
+      if (!vscode.window.activeTextEditor) {
+        return [];
+      }
       const files: any = await vscode.commands.executeCommand(ELS_COMMANDS.GET_KIND_USAGES, vscode.window.activeTextEditor.document.uri.fsPath);
       if (this.view) {
         if (files.name && Array.isArray(files.usages) && files.usages.length) {
