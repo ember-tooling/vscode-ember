@@ -65,6 +65,7 @@ All `Ember Language Server` features included.
 * [els-addon-docs](https://github.com/lifeart/els-addon-docs) - Ember Language Server Addon Docs Completion Provider.
 * [ember-fast-cli](https://github.com/lifeart/ember-fast-cli) - Addon for Ember-cli commands execution.
 * [els-intl-addon](https://github.com/lifeart/els-intl-addon) - Internationalization addon for Unstable Ember Language Server.
+* [els-component-extraction-addon](https://github.com/lifeart/els-component-extraction-addon) - Create components from selection, using `ember-fast-cli`.
 
 ## Settings
 
