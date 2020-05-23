@@ -791,9 +791,9 @@
     lodash "^4.17.13"
     to-fast-properties "^2.0.0"
 
-"@emberwatch/ember-language-server@lifeart/ember-language-server#13441f230d5038fead853aadafc6446ddbc0ffec":
+"@emberwatch/ember-language-server@lifeart/ember-language-server#d90fd1e504768f127f4b2978bda213019ccc6c2c":
   version "0.2.2"
-  resolved "https://codeload.github.com/lifeart/ember-language-server/tar.gz/13441f230d5038fead853aadafc6446ddbc0ffec"
+  resolved "https://codeload.github.com/lifeart/ember-language-server/tar.gz/d90fd1e504768f127f4b2978bda213019ccc6c2c"
   dependencies:
     "@glimmer/syntax" "^0.52.0"
     ast-types "^0.13.3"

@@ -21,6 +21,7 @@ function lenseNameFromPath(document, f) {
     const isActive = fsPath === normPath;
     const isTest = normPath.includes("/tests/");
     const isAddon = normPath.includes("/addon/");
+    const isAddonExport = (normPath.includes('/lib/') || normPath.includes('/node_modules/')) && normPath.includes('/app/');
     const isComponent = normPath.includes("/components/");
     let name = normPath.endsWith(".hbs") ? "template" : "script";
     if (
@@ -39,6 +40,9 @@ function lenseNameFromPath(document, f) {
     }
     if (isAddon) {
       name = `addon:${name}`;
+    }
+    if (isAddonExport) {
+      name = `addon-app:${name}`;
     }
     if (isTest) {
       if (["script", "template"].includes(name)) {
