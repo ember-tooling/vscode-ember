@@ -1,5 +1,6 @@
 export const COMMANDS = {
     OPEN_RELATED_FILE: 'els.openRelatedFile',
+    PROXY_COMMAND: 'els.proxyCommand',
     RELOAD_PROJECT: 'els.reloadProject',
     SET_STATUS_BAR_TEXT: 'els.setStatusBarText',
     RUN_IN_EMBER_CLI: 'els.runInEmberCLI',

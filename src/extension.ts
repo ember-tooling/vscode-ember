@@ -93,6 +93,25 @@ export async function activate(context: ExtensionContext) {
     })
   );
 
+
+  context.subscriptions.push(
+    commands.registerCommand(ELS_COMMANDS.PROXY_COMMAND, async (commandName: string, commandOpts: any, callbackCommandName: string, tail: any = {}) => {
+      try {
+        let result = await commands.executeCommand(commandName, ...commandOpts);
+        let document = workspace.rootPath;
+        if (!document && workspace.workspaceFolders && workspace.workspaceFolders.length) {
+          document = workspace.workspaceFolders[0].uri.fsPath;
+        }
+        if (window.activeTextEditor) {
+          document = window.activeTextEditor.document.uri.fsPath;
+        }
+        commands.executeCommand(callbackCommandName, document, result, tail);
+      } catch(e) {
+        window.showErrorMessage(e.toString());
+      }
+    })
+  );
+
   context.subscriptions.push(
     commands.registerCommand(ELS_COMMANDS.GET_USER_INPUT, async (opts: InputBoxOptions, callbackCommandName: string, tail: any) => {
       try {

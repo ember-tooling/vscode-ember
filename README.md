@@ -44,7 +44,20 @@ All `Ember Language Server` features included.
   - Ember-addons imports
   - Component block arguments (`as | name | `)
   - Any local paths (`this...`)
- 
+
+- Lense provider
+  - Related Files
+
+- Component usages
+  - Route Templates
+  - Component Templates
+
+- ember-template-lint Diagnostics integration (if it is included in a project)
+  - Template parsing issues
+  - Template linting
+  - Template linting inside tests
+  - Auto-fix action for fixable linting issues
+
 - Supported layouts
   - Classic 
   - Template Collocation
@@ -54,8 +67,6 @@ All `Ember Language Server` features included.
 - Supported Script Files
   - JavaScript
   - TypeScript
-
-- Diagnostics for ember-template-lint (if it is included in a project)
 
 
 ## Addons

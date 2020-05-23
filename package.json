@@ -4,7 +4,7 @@
   "description": "Provides features like auto complete, goto definition and diagnostics for Ember.js projects",
   "author": "Thomas Sauer <t-sauer@outlook.de>, Aleksandr Kanunnikov <lifeart92@gmail.com>",
   "license": "MIT",
-  "version": "1.3.2",
+  "version": "1.4.2",
   "publisher": "lifeart",
   "icon": "icon.png",
   "keywords": [
@@ -89,7 +89,7 @@
     "vscode": "^1.1.29"
   },
   "dependencies": {
-    "@emberwatch/ember-language-server": "lifeart/ember-language-server#d90fd1e504768f127f4b2978bda213019ccc6c2c",
+    "@emberwatch/ember-language-server": "lifeart/ember-language-server#86bf37c29531c8c8daacd2ef36c6fe875d8659fb",
     "vscode-languageclient": "^6.1.1"
   }
 }
