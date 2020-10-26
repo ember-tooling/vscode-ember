@@ -58,10 +58,17 @@ function lenseNameFromPath(document, f: Result, meta: MatchResult | null) {
   let fsPath = normalizePath(document.uri.fsPath);
   const isActive = fsPath === normPath;
   const isAddonApp = normPath.includes("/app/");
+  const isDummyApp = normPath.includes("/tests/dummy/");
   const isAddonExport = f.meta.scope === 'addon';
   const isRoutePath = ['route', 'controller', 'template'].includes(f.meta.type);
   const typeKey = isRoutePath ? `:${f.meta.type}:` : ':';
-  const scope = isAddonExport && isAddonApp ? 'addon-app' : f.meta.scope;
+  let scope = isAddonExport && isAddonApp ? 'addon-app' : f.meta.scope;
+  if (isDummyApp) {
+    scope = 'dummy-app'
+    if (f.meta.kind === 'test') {
+      f.meta.kind = 'script';
+    }
+  }
   const key = `${scope}${typeKey}${f.meta.kind}`;
   let name = key.replace('application:', '');
   name = name.replace('template:template', 'template');
@@ -71,10 +78,8 @@ function lenseNameFromPath(document, f: Result, meta: MatchResult | null) {
   name = name.replace(`${f.meta.type}:script`, f.meta.type);
   if (isActive) {
     name = "_" + name + "_";
-  } else {
-    name = " " + name + " ";
   }
-  return name;
+  return name.trim();
 }
 
 export async function provideCodeLenses(
