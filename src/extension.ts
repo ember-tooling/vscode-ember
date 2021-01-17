@@ -25,20 +25,12 @@ import {
   ServerOptions,
   TransportKind,
   RevealOutputChannelOn
-} from "vscode-languageclient";
+} from "vscode-languageclient/node";
 import { provideCodeLenses } from './lenses';
 let ExtStatusBarItem: StatusBarItem;
 export async function activate(context: ExtensionContext) {
   // The server is implemented in node
-  let serverModule = context.asAbsolutePath(
-    path.join(
-      "node_modules",
-      "@emberwatch",
-      "ember-language-server",
-      "lib",
-      "start-server.js"
-    )
-  );
+  let serverModule = path.join(context.extensionPath, "./start-server.js");
   let config = workspace.getConfiguration("els");
   // The debug options for the server
   let debugOptions = { execArgv: ["--nolazy", "--inspect=6004"] };

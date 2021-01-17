@@ -66,11 +66,12 @@ class Dependency extends vscode.TreeItem {
     super(label, collapsibleState);
   }
 
-
+  // @ts-expect-error
   get tooltip(): string {
     return `${this.label} [${this.type}]`;
   }
 
+  // @ts-expect-error
   get contextValue() {
     return 'file';
   }
@@ -78,6 +79,8 @@ class Dependency extends vscode.TreeItem {
   get description(): string {
     return this.type;
   }
+
+  // @ts-expect-error
   get command(): vscode.Command {
     return {
       title: '',
@@ -87,6 +90,7 @@ class Dependency extends vscode.TreeItem {
     }
   }
 
+  // @ts-expect-error
   get resourceUri(): vscode.Uri {
     return vscode.Uri.file(this.fullPath);
   }

@@ -2,9 +2,9 @@
   "name": "vscode-ember-unstable",
   "displayName": "Unstable Ember Language Server",
   "description": "Provides features like auto complete, goto definition and diagnostics for Ember.js projects",
-  "author": "Thomas Sauer <t-sauer@outlook.de>, Aleksandr Kanunnikov <lifeart92@gmail.com>",
+  "author": "Aleksandr Kanunnikov <lifeart92@gmail.com>, Thomas Sauer <t-sauer@outlook.de>",
   "license": "MIT",
-  "version": "1.6.0",
+  "version": "2.0.1",
   "publisher": "lifeart",
   "icon": "icon.png",
   "keywords": [
@@ -78,18 +78,18 @@
     "compile": "tsc -p ./",
     "watch": "tsc -watch -p ./",
     "update-vscode": "node ./node_modules/vscode/bin/install",
-    "postinstall": "node ./node_modules/vscode/bin/install",
-    "clean:cache": "yarn cache clean @emberwatch/ember-language-server",
-    "build:langserver": "npm run --prefix ./node_modules/@emberwatch/ember-language-server prepublish"
+    "postinstall": "node ./node_modules/vscode/bin/install && yarn build:langserver && yarn compile",
+    "clean:cache": "yarn cache clean @lifeart/ember-language-server",
+    "build:langserver": "yarn --cwd ./node_modules/@lifeart/ember-language-server prepublish"
   },
   "devDependencies": {
     "@types/mocha": "^2.2.33",
     "@types/node": "^6.0.52",
-    "typescript": "^2.1.5",
+    "typescript": "^4.1.3",
     "vscode": "^1.1.29"
   },
   "dependencies": {
-    "@emberwatch/ember-language-server": "lifeart/ember-language-server#33d04547e6f9d8117a81607c6fe28042c4bf6546",
-    "vscode-languageclient": "^6.1.1"
+    "@lifeart/ember-language-server": "lifeart/ember-language-server#69224d9c8f24cc073586565a775a1c0633594c28",
+    "vscode-languageclient": "7.0.0"
   }
 }
