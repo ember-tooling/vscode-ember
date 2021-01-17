@@ -1,11 +1,11 @@
 {
 	"compilerOptions": {
-		"target": "es6",
+		"target": "ES2018",
 		"module": "commonjs",
 		"moduleResolution": "node",
 		"skipLibCheck": true,
 		"outDir": "out",
-		"lib": [ "es2016" ],
+		"lib": [ "es2019" ],
 		"sourceMap": true
 	},
 	"exclude": [

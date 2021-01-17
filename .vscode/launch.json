@@ -39,7 +39,7 @@
         "sourceMaps":true,
         "protocol":"inspector",
         "outFiles":[
-           "${workspaceRoot}/node_modules/@emberwatch/ember-language-server/lib/**/*.js"
+           "${workspaceRoot}/node_modules/@lifeart/ember-language-server/lib/**/*.js"
         ],
         "restart":true,
         "smartStep":true
