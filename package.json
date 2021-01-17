@@ -78,7 +78,7 @@
     "compile": "tsc -p ./",
     "watch": "tsc -watch -p ./",
     "update-vscode": "node ./node_modules/vscode/bin/install",
-    "postinstall": "node ./node_modules/vscode/bin/install && yarn build:langserver && yarn compile",
+    "postinstall": "node ./node_modules/vscode/bin/install && yarn compile",
     "clean:cache": "yarn cache clean @lifeart/ember-language-server",
     "build:langserver": "yarn --cwd ./node_modules/@lifeart/ember-language-server prepublish"
   },
@@ -89,7 +89,7 @@
     "vscode": "^1.1.29"
   },
   "dependencies": {
-    "@lifeart/ember-language-server": "lifeart/ember-language-server#69224d9c8f24cc073586565a775a1c0633594c28",
+    "@lifeart/ember-language-server": "1.0.0",
     "vscode-languageclient": "7.0.0"
   }
 }
