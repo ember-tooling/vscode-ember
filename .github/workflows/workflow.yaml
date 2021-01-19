@@ -22,6 +22,8 @@ jobs:
         uses: gittools/actions/gitversion/setup@v0.9
         with:
             versionSpec: '5.1.x'
+        env:
+          ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
 
       - name: execute gitversion
         id: gitversion # step id used as reference for output values
