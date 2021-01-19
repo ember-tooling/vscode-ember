@@ -75,6 +75,7 @@
     "_vscode:prepublish": "npm run compile",
     "vs:package": "vsce package --yarn",
     "vs:publish": "vsce publish --yarn",
+    "vs:publish:ci": "vsce publish --yarn --pat $VSCODE_STORE_TOKEN",
     "compile": "tsc -p ./",
     "watch": "tsc -watch -p ./",
     "update-vscode": "node ./node_modules/vscode/bin/install",
