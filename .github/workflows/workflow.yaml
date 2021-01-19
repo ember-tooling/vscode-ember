@@ -67,3 +67,16 @@ jobs:
         with:
           name: vscode-ember-unstable-${{steps.gitversion.outputs.majorMinorPatch}}.vsix
           path: ${{github.workspace}}/vscode-ember-unstable-${{steps.gitversion.outputs.majorMinorPatch}}.vsix
+
+      - name: publish to marketplace
+        #if: github.ref == 'refs/heads/master'
+        run: yarn vs:publish -p ${{ secrets.VSCODE_STORE_TOKES }}
+
+      - name: create a release
+        #if: github.ref == 'refs/heads/master'
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKES }} # This token is provided by Actions, you do not need to create your own token
+        with:
+          tag_name: v${{ steps.gitversion.outputs.semVer }}
+          release_name: v${{ steps.gitversion.outputs.semVer }}
