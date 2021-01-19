@@ -50,17 +50,20 @@ jobs:
         with:
           files: '${{github.workspace}}/package.json'
           patch-syntax: |
-            = /version => "${{ steps.gitversion.outputs.semVer }}"
+            = /version => "${{ steps.gitversion.outputs.majorMinorPatch }}"
 
       - name: add version in CHANGELOG.md
         uses: cschleiden/replace-tokens@v1.0
         with:
           files: '${{github.workspace}}/CHANGELOG.md'
         env:
-          VERSION: "${{ steps.gitversion.outputs.semVer }}"
+          VERSION: "${{ steps.gitversion.outputs.majorMinorPatch }}"
 
       - name: compile and create vsix
         run: yarn vs:package
 
       - name: upload vsix as artifact
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v2
+        with:
+          name: vscode-ember-unstable-${{steps.gitversion.outputs.majorMinorPatch}}.vsix
+          path: ${{github.workspace}}/vscode-ember-unstable-${{steps.gitversion.outputs.majorMinorPatch}}.vsix
