@@ -75,6 +75,8 @@
     "_vscode:prepublish": "npm run compile",
     "vs:package": "vsce package --yarn",
     "vs:publish": "vsce publish --yarn",
+    "vs:publish:ci": "vsce publish --yarn --pat $VSCODE_STORE_TOKEN",
+    "ov:publish:ci": "ovsx publish --yarn --pat $OPEN_VSX_STORE_TOKEN",
     "compile": "tsc -p ./",
     "watch": "tsc -watch -p ./",
     "update-vscode": "node ./node_modules/vscode/bin/install",
@@ -86,10 +88,16 @@
     "@types/mocha": "^2.2.33",
     "@types/node": "^6.0.52",
     "typescript": "^4.1.3",
+    "vsce": "1.83.0",
+    "ovsx": "^0.1.0-next.97d460c",
     "vscode": "^1.1.29"
   },
   "dependencies": {
     "@lifeart/ember-language-server": "1.0.1",
     "vscode-languageclient": "7.0.0"
+  },
+  "volta": {
+    "node": "14.15.4",
+    "yarn": "1.22.10"
   }
 }
