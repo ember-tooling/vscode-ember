@@ -62,12 +62,5 @@ jobs:
       - name: compile and create vsix
         run: yarn vs:package
 
-      - name: print vsix path
-        run: |
-          echo "VSIX Path: ${{ env.vsix_path }}"
-
       - name: upload vsix as artifact
         uses: actions/upload-artifact@v1
-        with:
-          name: vscode-ember-unstable-${{steps.gitversion.outputs.semVer}}.vsix
-          path: ${{github.workspace}}/vscode-ember-unstable-${{steps.gitversion.outputs.semVer}}.vsix
