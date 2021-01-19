@@ -28,6 +28,8 @@ jobs:
       - name: execute gitversion
         id: gitversion # step id used as reference for output values
         uses: gittools/actions/gitversion/execute@v0.9
+        env:
+          ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
 
       - name: print gitversion
         run: |
