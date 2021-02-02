@@ -21,8 +21,11 @@ export type MatchResultType =
   | 'transform'
   | 'adapter'
   | 'serializer';
+
 type MatchResultScope = 'addon' | 'application';
+
 type MatchResultKind = 'test' | 'script' | 'template' | 'style';
+
 interface MatchResult {
   type: MatchResultType;
   name: string;
