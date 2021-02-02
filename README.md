@@ -22,7 +22,7 @@ All `Ember Language Server` features included.
   - Components (Curly, Angle Bracket)
   - Component Arguments (if used in template)
   - Services
-  - Route/Controler transition functions route names
+  - Route/Controller transition functions route names
   - Model names (store methods, model relation definition)
   - Transform names (model definition)
   - Helpers
@@ -46,7 +46,7 @@ All `Ember Language Server` features included.
   - Any local paths (`this...`)
 
 - Lense provider
-  - Related Files
+  - Related Files (tests, styles, templates, etc)
 
 - Component usages
   - Route Templates
