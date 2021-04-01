@@ -1,7 +1,5 @@
 # vscode-ember
 
-[![Build](https://github.com/lifeart/vscode-ember/actions/workflows/workflow.yaml/badge.svg?branch=master)](https://github.com/lifeart/vscode-ember/actions/workflows/workflow.yaml)
-
 This is the VSCode extension to use the [Unstable Ember Language Server](https://github.com/lifeart/ember-language-server). 
 
 `Unstable Ember Language Server` is full-featured fork of [Ember Language Server](https://github.com/emberwatch/ember-language-server). It's `stable` and `extremely` power-featured.
