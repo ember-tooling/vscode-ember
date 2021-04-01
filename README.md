@@ -71,6 +71,7 @@ All `Ember Language Server` features included.
 
 ## Addons
 
+* [els-addon-glint](https://github.com/lifeart/els-addon-glint) - Glint integration for LS.
 * [els-a11y-addon](https://github.com/lifeart/els-a11y-addon) - Ember Language Server a11y addon.
 * [els-addon-typed-templates](https://github.com/lifeart/els-addon-typed-templates) - Typed Templates for Ember.
 * [els-addon-docs](https://github.com/lifeart/els-addon-docs) - Ember Language Server Addon Docs Completion Provider.
