@@ -27,9 +27,7 @@ jobs:
 
       - name: execute gitversion
         id: gitversion # step id used as reference for output values
-        uses: gittools/actions/gitversion/execute@v0.9
-        with:
-            output: 'buildserver'
+        uses: gittools/actions/gitversion/execute@v0.9.7
         env:
           ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
 
