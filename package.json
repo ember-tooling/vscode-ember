@@ -90,7 +90,7 @@
     "typescript": "^4.1.3",
     "vsce": "1.83.0",
     "ovsx": "^0.1.0-next.97d460c",
-    "vscode": "^1.1.29"
+    "vscode": "^1.1.37"
   },
   "dependencies": {
     "@lifeart/ember-language-server": "1.2.0",
