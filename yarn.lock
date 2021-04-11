@@ -1003,10 +1003,10 @@
   dependencies:
     babel-traverse "^6.26.0"
 
-"@lifeart/ember-language-server@1.4.0":
-  version "1.4.0"
-  resolved "https://registry.yarnpkg.com/@lifeart/ember-language-server/-/ember-language-server-1.4.0.tgz#9e771818acc48501892209e7b994d4fc0f456ad3"
-  integrity sha512-pYTVOVlWDELxKhNWxlFE75ht4jq2xYuj3vyqwFFAMdsGkJiKIFs0GxqjMC7/7fNI+spAWdrxJLyKQkMzAQ5Ilw==
+"@lifeart/ember-language-server@1.5.0":
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/@lifeart/ember-language-server/-/ember-language-server-1.5.0.tgz#002e514f247ae5590177956604d3c3000226e124"
+  integrity sha512-kZH/dZUWDE+f/TAX6AcOJphIyQU0j0b6ONKuIUfZ0Wc5URX/Cj+M4xTU+gQiLbIWFu46T/LAsnQ7IBbXnlMGig==
   dependencies:
     "@glimmer/syntax" "^0.73.1"
     "@lifeart/ember-extract-inline-templates" "^2.0.0"
@@ -1026,6 +1026,7 @@
     lodash "^4.17.20"
     memoizee "^0.4.15"
     rimraf "^3.0.2"
+    semver "^7.3.5"
     util "^0.12.3"
     vscode-jsonrpc "6.0.0"
     vscode-languageserver "^7.0.0"
@@ -3254,6 +3255,13 @@ semver@^7.3.4:
   version "7.3.4"
   resolved "https://registry.yarnpkg.com/semver/-/semver-7.3.4.tgz#27aaa7d2e4ca76452f98d3add093a72c943edc97"
   integrity sha512-tCfb2WLjqFAtXn4KEdxIhalnRtoKFN7nAwj0B3ZXCbQloV2tq5eDbcTmT68JJD3nRJq24/XgxtQKFIpQdtvmVw==
+  dependencies:
+    lru-cache "^6.0.0"
+
+semver@^7.3.5:
+  version "7.3.5"
+  resolved "https://registry.yarnpkg.com/semver/-/semver-7.3.5.tgz#0b621c879348d8998e4b0e4be94b3f12e6018ef7"
+  integrity sha512-PoeGJYh8HK4BTO/a9Tf6ZG3veo/A7ZVsYrSA6J8ny9nb3B1VrpkuN+z9OE5wfE5p6H4LchYZsegiQgbJD94ZFQ==
   dependencies:
     lru-cache "^6.0.0"
 
