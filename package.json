@@ -66,6 +66,14 @@
             "type": "string"
           },
           "description": "List of UELS addons paths to include."
+        },
+        "els.local.ignoredProjects": {
+          "type": "array",
+          "default": [],
+          "items": {
+            "type": "string"
+          },
+          "description": "List of project names to ignore."
         }
       }
     }
