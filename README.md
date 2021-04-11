@@ -89,3 +89,12 @@ All `Ember Language Server` features included.
 }
 
 ```
+* `els.local.ignoredProjects` -  Supports Ignoring of LS initialization on unneeded projects, for example, the below setting will ignore the initialization of the project named, `sample-project-name`:
+
+```js
+{
+    "els.local.ignoredProjects": ["sample-project-name"],
+}
+
+```
+_Note: `ignoredProjects` leverages the projectName from the `name` property of the project's `package.json`_
