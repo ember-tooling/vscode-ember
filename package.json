@@ -73,7 +73,7 @@
           "items": {
             "type": "string"
           },
-          "description": "List of projects to ignore."
+          "description": "List of project names to ignore."
         }
       }
     }
