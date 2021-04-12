@@ -101,7 +101,7 @@
     "vscode": "^1.1.37"
   },
   "dependencies": {
-    "@lifeart/ember-language-server": "1.5.0",
+    "@lifeart/ember-language-server": "1.6.0",
     "vscode-languageclient": "7.0.0"
   },
   "volta": {

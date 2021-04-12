@@ -1003,10 +1003,10 @@
   dependencies:
     babel-traverse "^6.26.0"
 
-"@lifeart/ember-language-server@1.5.0":
-  version "1.5.0"
-  resolved "https://registry.yarnpkg.com/@lifeart/ember-language-server/-/ember-language-server-1.5.0.tgz#002e514f247ae5590177956604d3c3000226e124"
-  integrity sha512-kZH/dZUWDE+f/TAX6AcOJphIyQU0j0b6ONKuIUfZ0Wc5URX/Cj+M4xTU+gQiLbIWFu46T/LAsnQ7IBbXnlMGig==
+"@lifeart/ember-language-server@1.6.0":
+  version "1.6.0"
+  resolved "https://registry.yarnpkg.com/@lifeart/ember-language-server/-/ember-language-server-1.6.0.tgz#a8fa23f9ad6c4a077832aa3cdc1773fdbc69c19b"
+  integrity sha512-DfhBwifdiSdlmJFub5tp3bBfGyHJuuQ3j0Nt4IjJWfJRlrp0RqKVEUg78R8QEviklzRlocDgbGJScXco+c9/dQ==
   dependencies:
     "@glimmer/syntax" "^0.73.1"
     "@lifeart/ember-extract-inline-templates" "^2.0.0"
