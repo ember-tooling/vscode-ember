@@ -68,7 +68,9 @@ All `Ember Language Server` features included.
   - TypeScript
 
 
-## Addons
+## Available addons
+
+Using this addons as dev-dependencies in your project (or downloading and providing path in extension configuration - "els.local.addons") may extend LS functionality or override default one.
 
 * [els-addon-glint](https://github.com/lifeart/els-addon-glint) - Glint integration for LS.
 * [els-a11y-addon](https://github.com/lifeart/els-a11y-addon) - Ember Language Server a11y addon.
@@ -77,6 +79,7 @@ All `Ember Language Server` features included.
 * [ember-fast-cli](https://github.com/lifeart/ember-fast-cli) - Addon for Ember-cli commands execution.
 * [els-intl-addon](https://github.com/lifeart/els-intl-addon) - Internationalization addon for Unstable Ember Language Server.
 * [els-component-extraction-addon](https://github.com/lifeart/els-component-extraction-addon) - Create components from selection, using `ember-fast-cli`.
+* [els-addon-file-watcher](https://github.com/lifeart/els-addon-file-watcher) - Project change detection addon (not needed for VSCode users)
 
 ## Settings
 
