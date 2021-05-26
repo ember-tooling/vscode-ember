@@ -59,6 +59,11 @@
           "default": true,
           "description": "Show related files as Lens on first line."
         },
+        "els.local.collectTemplateTokens": {
+          "type": "boolean",
+          "default": true,
+          "description": "Disabling may improve startup performance for very large projects, but, also disables Ember File Usages window"
+        },
         "els.local.addons": {
           "type": "array",
           "default": [],
@@ -101,7 +106,7 @@
     "vscode": "^1.1.37"
   },
   "dependencies": {
-    "@lifeart/ember-language-server": "1.19.0",
+    "@lifeart/ember-language-server": "1.21.0",
     "vscode-languageclient": "7.0.0"
   },
   "volta": {
