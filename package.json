@@ -113,7 +113,6 @@
     "is-arguments": "^1.1.1",
     "is-generator-function": "^1.0.10",
     "is-typed-array": "^1.1.8",
-    "net": "^1.0.2",
     "os-browserify": "^0.3.0",
     "ovsx": "^0.1.0-next.97d460c",
     "path-browserify": "^1.0.1",

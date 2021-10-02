@@ -80,6 +80,7 @@ const browserServerConfig = /** @type WebpackConfig */ {
       tty: false,
       assert: false,
       debug: false,
+      net: false,
       stream: false,
       'is-typed-array': require.resolve('is-typed-array'),
       'which-typed-array': require.resolve('which-typed-array'),
@@ -88,7 +89,6 @@ const browserServerConfig = /** @type WebpackConfig */ {
       'available-typed-arrays': require.resolve('available-typed-arrays'),
       'foreach': require.resolve('foreach'),
       'array-filter': require.resolve('array-filter'),
-      'net': require.resolve('net')
 		},
 	},
 	module: {
