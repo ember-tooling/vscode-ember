@@ -73,7 +73,22 @@ const browserServerConfig = /** @type WebpackConfig */ {
 		extensions: ['.ts', '.js'], // support ts-files and js-files
 		alias: {},
 		fallback: {
-			path: require.resolve("path-browserify")
+			path: require.resolve("path-browserify"),
+      util: require.resolve("util"),
+      os: require.resolve("os-browserify/browser"),
+      fs: require.resolve("browserify-fs"),
+      tty: false,
+      assert: false,
+      debug: false,
+      stream: false,
+      'is-typed-array': require.resolve('is-typed-array'),
+      'which-typed-array': require.resolve('which-typed-array'),
+      'is-generator-function': require.resolve('is-generator-function'),
+      'is-arguments': require.resolve('is-arguments'),
+      'available-typed-arrays': require.resolve('available-typed-arrays'),
+      'foreach': require.resolve('foreach'),
+      'array-filter': require.resolve('array-filter'),
+      'net': require.resolve('net')
 		},
 	},
 	module: {
@@ -99,4 +114,4 @@ const browserServerConfig = /** @type WebpackConfig */ {
 };
 
 // browserServerConfig
-module.exports = [browserClientConfig];
+module.exports = [browserClientConfig, browserServerConfig];
