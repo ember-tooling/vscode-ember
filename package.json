@@ -15,7 +15,7 @@
     "Unstable Language server"
   ],
   "engines": {
-    "vscode": "^1.22.2"
+    "vscode": "^1.43.0"
   },
   "preview": true,
   "categories": [

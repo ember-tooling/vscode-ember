@@ -23,7 +23,16 @@ import { provideCodeLenses } from './lenses';
 let ExtStatusBarItem: StatusBarItem;
 export async function activate(context: ExtensionContext) {
   // The server is implemented in node
-  let config = workspace.getConfiguration("els");
+  let config: any = {
+    codeLens: {
+      relatedFiles:  true
+    }
+  };
+  try {
+    config = workspace.getConfiguration("els");
+  } catch (e) {
+    // EOL
+  }
   // The debug options for the server
   // If the extension is launched in debug mode then the debug server options are used
   // Otherwise the run options are used
@@ -181,7 +190,8 @@ export async function activate(context: ExtensionContext) {
 function createWorkerLanguageClient(context: ExtensionContext, clientOptions: LanguageClientOptions) {
 	// Create a worker. The worker main file implements the language server.
 	const serverMain = Uri.joinPath(context.extensionUri, 'dist/web/server/browserServerMain.js');
-	const worker = new Worker(serverMain.toString());
+	console.log('serverMain', serverMain);
+  const worker = new Worker(serverMain.toString());
 	// create the language server client to communicate with the server running in the worker
 	return new LanguageClient('emberLanguageServer', "Unstable Ember Language Server", clientOptions, worker);
 }
