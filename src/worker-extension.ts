@@ -1,6 +1,5 @@
 "use strict";
 
-import * as path from "path";
 import { COMMANDS as ELS_COMMANDS } from './constants';
 import { UsagesProvider } from './usages-provider';
 import {

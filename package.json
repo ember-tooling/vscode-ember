@@ -99,7 +99,7 @@
     "web:compile": "webpack",
     "web:watch": "webpack --watch",
     "web:package": "webpack --mode production --devtool hidden-source-map",
-    "chrome": "npm run web:compile && vscode-test-web --browserType=chromium --extensionDevelopmentPath=. ./test-data"
+    "chrome": "npm run web:compile && vscode-test-web --browserType=chromium --extensionDevelopmentPath=."
   },
   "devDependencies": {
     "@types/mocha": "^2.2.33",

@@ -114,4 +114,4 @@ const browserServerConfig = /** @type WebpackConfig */ {
 };
 
 // browserServerConfig
-module.exports = [browserClientConfig, browserServerConfig];
+module.exports = [browserClientConfig];
