@@ -15,6 +15,9 @@ import {
 } from "vscode";
 import { isEmberCliProject, isGlimmerXProject } from './workspace-utils';
 import {
+  Message,
+  ErrorAction,
+  CloseAction,
   LanguageClient,
   LanguageClientOptions,
   RevealOutputChannelOn
@@ -55,6 +58,15 @@ export async function activate(context: ExtensionContext) {
     outputChannelName: "Unstable Ember Language Server",
     revealOutputChannelOn: RevealOutputChannelOn.Never,
     initializationOptions: { editor: 'vscode' },
+    errorHandler: {
+      error(error: Error, message: Message | undefined, count: number): ErrorAction {
+        window.showErrorMessage(`${error.toString()} | ${message?.toString()} | ${count}`);
+        return ErrorAction.Shutdown;
+      },
+      closed() {
+        return CloseAction.DoNotRestart;
+      }
+    },
     synchronize: {
       fileEvents: workspace.createFileSystemWatcher(
         `**/*.{${syncExtensions.join(",")}}`
@@ -190,7 +202,6 @@ export async function activate(context: ExtensionContext) {
 function createWorkerLanguageClient(context: ExtensionContext, clientOptions: LanguageClientOptions) {
 	// Create a worker. The worker main file implements the language server.
 	const serverMain = Uri.joinPath(context.extensionUri, 'dist/web/server/browserServerMain.js');
-	console.log('serverMain', serverMain);
   const worker = new Worker(serverMain.toString());
 	// create the language server client to communicate with the server running in the worker
 	return new LanguageClient('emberLanguageServer', "Unstable Ember Language Server", clientOptions, worker);
