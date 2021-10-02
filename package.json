@@ -84,7 +84,7 @@
     }
   },
   "main": "./out/src/extension",
-  "browser": "./out/src/worker-extension",
+  "browser": "./dist/web/client/browserClientMain",
   "scripts": {
     "_vscode:prepublish": "npm run compile",
     "vs:package": "vsce package --yarn",
