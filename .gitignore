@@ -3,3 +3,5 @@ server
 node_modules
 vscode-ember-unstable*
 .vsix
+.vscode-test-web
+dist

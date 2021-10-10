@@ -12,7 +12,7 @@ export class UsagesProvider implements vscode.TreeDataProvider<Dependency> {
     this.view = view;
   }
   refresh() {
-    this._onDidChangeTreeData.fire();
+    this._onDidChangeTreeData.fire(null);
   }
 
   getTreeItem(element: Dependency): vscode.TreeItem {
@@ -76,6 +76,7 @@ class Dependency extends vscode.TreeItem {
     return 'file';
   }
 
+  // @ts-expect-error
   get description(): string {
     return this.type;
   }

@@ -24,7 +24,8 @@ import {
   LanguageClientOptions,
   ServerOptions,
   TransportKind,
-  RevealOutputChannelOn
+  RevealOutputChannelOn,
+  ExecuteCommandRequest
 } from "vscode-languageclient/node";
 import { provideCodeLenses } from './lenses';
 let ExtStatusBarItem: StatusBarItem;
@@ -74,6 +75,42 @@ export async function activate(context: ExtensionContext) {
   ExtStatusBarItem.text = "$(telescope) Ember Loading...";
   ExtStatusBarItem.command = ELS_COMMANDS.SET_STATUS_BAR_TEXT;
   ExtStatusBarItem.show();
+
+
+  context.subscriptions.push(
+    commands.registerCommand('els.fs.readFile', async (filePath: Uri) => {
+
+      try {
+        const data = await workspace.fs.readFile(filePath);
+        return data.toString();
+      } catch(e) {
+        return null;
+      }
+
+    })
+  )
+
+  context.subscriptions.push(
+    commands.registerCommand('els.fs.stat', async (filePath: Uri) => {
+      try {
+        const data = await workspace.fs.stat(filePath);
+        return data;
+      } catch(e) {
+        return null;
+      }
+    })
+  )
+
+  context.subscriptions.push(
+    commands.registerCommand('els.fs.readDirectory', async (filePath: Uri) => {
+      try {
+        const data = await workspace.fs.readDirectory(filePath);
+        return data;
+      } catch(e) {
+        return null;
+      }
+    })
+  )
 
   // Push the disposable to the context's subscriptions so that the
   // client can be deactivated on extension deactivation
@@ -154,8 +191,10 @@ export async function activate(context: ExtensionContext) {
 
   const fileUsagesProvider = new UsagesProvider();
 
-
   disposable.onReady().then(() => {
+    disposable.onRequest(ExecuteCommandRequest.type.method, async ({command, arguments: args}) => {
+      return commands.executeCommand(command, ...args);
+    });
     commands.executeCommand(ELS_COMMANDS.SET_CONFIG, config);
     ExtStatusBarItem.text = "$(telescope) " + 'Ember';
 
@@ -196,6 +235,7 @@ export async function activate(context: ExtensionContext) {
         languages.registerCodeLensProvider(language, { provideCodeLenses })
       );
     });
+
   }
 
 }
