@@ -15,6 +15,16 @@ node_modules/**
 !node_modules/vscode-languageserver/node.js
 !node_modules/vscode-languageserver/lib/node/**/*.js
 !node_modules/vscode-languageserver/lib/common/**/*.js
+!node_modules/vscode-languageserver-protocol/package.json
+!node_modules/vscode-languageserver-protocol/node.js
+!node_modules/vscode-languageserver-protocol/lib/node/**/*.js
+!node_modules/vscode-languageserver-protocol/lib/common/**/*.js
+!node_modules/vscode-jsonrpc/package.json
+!node_modules/vscode-jsonrpc/node.js
+!node_modules/vscode-jsonrpc/lib/node/**/*.js
+!node_modules/vscode-jsonrpc/lib/common/**/*.js
+!node_modules/vscode-languageserver-types/package.json
+!node_modules/vscode-languageserver-types/lib/**/*.js
 .gitignore
 .vsix
 tsconfig.json
