@@ -11,6 +11,10 @@ src/**
 node_modules/**
 !node_modules/@lifeart/ember-language-server/package.json
 !node_modules/@lifeart/ember-language-server/dist/**
+!node_modules/vscode-languageserver/package.json
+!node_modules/vscode-languageserver/node.js
+!node_modules/vscode-languageserver/lib/node/*.js
+!node_modules/vscode-languageserver/lib/common/*.js
 .gitignore
 .vsix
 tsconfig.json
