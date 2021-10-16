@@ -576,20 +576,20 @@
     methods "^1.1.2"
     path-to-regexp "^6.1.0"
 
-"@lifeart/ember-extract-inline-templates@^2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@lifeart/ember-extract-inline-templates/-/ember-extract-inline-templates-2.0.0.tgz#5d9bca348ed67412760aacedc24a53efa8e393b3"
-  integrity sha512-4xcJN3me1xsobxeTizN5oxCqxRZI4p1kLuCyQe8rz4re1Kz/lB1MVYq4Tc/lkjUgSQ/TKjnCSU0FMc99eGGqQg==
+"@lifeart/ember-extract-inline-templates@2.1.0":
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/@lifeart/ember-extract-inline-templates/-/ember-extract-inline-templates-2.1.0.tgz#b21cd863523cfbdb95184b351b88c1cd6cfdf0d2"
+  integrity sha512-SU3I3vqbHrfxJnKb7+lWE9VJ7lb6fY9jzhhpp+r4iM0SdO8hPHzj6lpJaNRdYr25r+OtDMpngES5C76jkoTGlA==
   dependencies:
     babel-traverse "^6.26.0"
 
-"@lifeart/ember-language-server@2.2.1":
-  version "2.2.1"
-  resolved "https://registry.yarnpkg.com/@lifeart/ember-language-server/-/ember-language-server-2.2.1.tgz#e0dc763df4e96261b498ea58a1de179cf82a3b00"
-  integrity sha512-gsqKf2HhSysbCcVUIQpiSuQWIt1g0wN/s6E45BiZMAjd1kqAtgFFHobMhnMjNFIY1LtSg0aJdWvQDIdzSvGrYQ==
+"@lifeart/ember-language-server@2.2.2":
+  version "2.2.2"
+  resolved "https://registry.yarnpkg.com/@lifeart/ember-language-server/-/ember-language-server-2.2.2.tgz#5a772f6941cb1a710084ed3ea7e1d37fb7d8e055"
+  integrity sha512-nkkzjvw5EG3+ZnZTbChEB++JnW3BTzyMtFtgjx/i5U3V3AsOlBwj3tTye7j0o20Msqb9hvkuEEmusHKykOxvFA==
   dependencies:
     "@glimmer/syntax" "^0.73.1"
-    "@lifeart/ember-extract-inline-templates" "^2.0.0"
+    "@lifeart/ember-extract-inline-templates" "2.1.0"
     ast-types "^0.14.2"
     dag-map "^2.0.2"
     ember-meta-explorer "1.1.0"
