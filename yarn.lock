@@ -583,10 +583,10 @@
   dependencies:
     babel-traverse "^6.26.0"
 
-"@lifeart/ember-language-server@2.2.2":
-  version "2.2.2"
-  resolved "https://registry.yarnpkg.com/@lifeart/ember-language-server/-/ember-language-server-2.2.2.tgz#5a772f6941cb1a710084ed3ea7e1d37fb7d8e055"
-  integrity sha512-nkkzjvw5EG3+ZnZTbChEB++JnW3BTzyMtFtgjx/i5U3V3AsOlBwj3tTye7j0o20Msqb9hvkuEEmusHKykOxvFA==
+"@lifeart/ember-language-server@2.4.0":
+  version "2.4.0"
+  resolved "https://registry.yarnpkg.com/@lifeart/ember-language-server/-/ember-language-server-2.4.0.tgz#2e734d0137d581a7a74c96b5afbcc1a9b5769888"
+  integrity sha512-G5OJhuyVI4S7hyRU6NE3CJuDlK1l8HW5zPmtw4EdhA22Ojs5v6NuqpqIY09ht6XGzVueKrvXHIn8tGvmnVf6gg==
   dependencies:
     "@glimmer/syntax" "^0.73.1"
     "@lifeart/ember-extract-inline-templates" "2.1.0"
@@ -595,7 +595,9 @@
     ember-meta-explorer "1.1.0"
     ember-template-recast "^5.0.3"
     find-up "^5.0.0"
+    flat "^5.0.2"
     fuzzaldrin "^2.1.0"
+    js-yaml "^4.1.0"
     lodash "^4.17.20"
     memoizee "^0.4.15"
     picomatch "^2.3.0"
@@ -938,6 +940,11 @@ argparse@^1.0.7:
   integrity sha512-o5Roy6tNG4SL/FOkCAN6RzjiakZS25RLYFrcMttJqbdd8BWrnA+fGz57iN5Pb06pvBGvl5gQ0B48dJlslXvoTg==
   dependencies:
     sprintf-js "~1.0.2"
+
+argparse@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/argparse/-/argparse-2.0.1.tgz#246f50f3ca78a3240f6c997e8a9bd1eac49e4b38"
+  integrity sha512-8+9WqebbFzpX9OR+Wa6O29asIogeRMzcGtAINdpMHHyAg10f05aSFVBbcEqGf/PXw1EjAZ+q2/bEBg3DvurK3Q==
 
 array-filter@^1.0.0:
   version "1.0.0"
@@ -1915,6 +1922,11 @@ find-up@^5.0.0:
     locate-path "^6.0.0"
     path-exists "^4.0.0"
 
+flat@^5.0.2:
+  version "5.0.2"
+  resolved "https://registry.yarnpkg.com/flat/-/flat-5.0.2.tgz#8ca6fe332069ffa9d324c327198c598259ceb241"
+  integrity sha512-b6suED+5/3rTpUBdG1gupIl8MPFCAMA0QXwmljLhvCUKcUvdE4gWky9zpuGCcXHOsz4J9wPGNWq6OKpmIzz3hQ==
+
 follow-redirects@^1.13.2:
   version "1.14.4"
   resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.14.4.tgz#838fdf48a8bbdd79e52ee51fb1c94e3ed98b9379"
@@ -2449,6 +2461,13 @@ js-tokens@^3.0.2:
   version "3.0.2"
   resolved "https://registry.yarnpkg.com/js-tokens/-/js-tokens-3.0.2.tgz#9866df395102130e38f7f996bceb65443209c25b"
   integrity sha1-mGbfOVECEw449/mWvOtlRDIJwls=
+
+js-yaml@^4.1.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/js-yaml/-/js-yaml-4.1.0.tgz#c1fb65f8f5017901cdd2c951864ba18458a10602"
+  integrity sha512-wpxZs9NoxZaJESJGIZTyDEaYpl0FKSA+FB9aJiyemKhMwkxQg63h4T1KJgUGHpTqPDNRcmmYLugrRjJlBtWvRA==
+  dependencies:
+    argparse "^2.0.1"
 
 jsesc@^2.5.1:
   version "2.5.2"
