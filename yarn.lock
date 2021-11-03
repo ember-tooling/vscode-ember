@@ -583,10 +583,10 @@
   dependencies:
     babel-traverse "^6.26.0"
 
-"@lifeart/ember-language-server@2.4.1":
-  version "2.4.1"
-  resolved "https://registry.yarnpkg.com/@lifeart/ember-language-server/-/ember-language-server-2.4.1.tgz#a3dd91f23419e00d5f6c40608ece0003255e7483"
-  integrity sha512-Av4bGXt1PdaWAl4ZERBmItfS7QHNbCHDINjNf3qf5LrX92czFMeJ5AHQEEcf4G2kbd85222YhFM6i99bp5bC7g==
+"@lifeart/ember-language-server@2.4.2":
+  version "2.4.2"
+  resolved "https://registry.yarnpkg.com/@lifeart/ember-language-server/-/ember-language-server-2.4.2.tgz#941f8a32ccb394e7e3137038eaf201e93ce292a1"
+  integrity sha512-aHqHi5yaE1AkTkqw1ZmKuUscD5k0CfDWsVTuALSN9gvEmoBCU1ysFT7tHeDMmHpMNMj847+XKM1JU91+vB0EbQ==
   dependencies:
     "@glimmer/syntax" "^0.73.1"
     "@lifeart/ember-extract-inline-templates" "2.1.0"
