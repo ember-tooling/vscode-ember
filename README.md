@@ -84,7 +84,7 @@ Using this addons as dev-dependencies in your project (or downloading and provid
 ## Settings
 
 * `els.codeLens.relatedFiles` - disable / enable related files
-* `els.codeLens.useBuiltinLinting` - disable / enable ember-template-lint integration
+* `els.local.useBuiltinLinting` - disable / enable ember-template-lint integration
 * `els.local.addons` - globally defined local language server addons entry folders, for example:
    
 ```js
