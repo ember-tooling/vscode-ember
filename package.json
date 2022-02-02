@@ -4,7 +4,7 @@
   "description": "Provides features like auto complete, goto definition and diagnostics for Ember.js projects",
   "author": "Aleksandr Kanunnikov <lifeart92@gmail.com>",
   "license": "MIT",
-  "version": "3.0.11",
+  "version": "3.0.12",
   "publisher": "lifeart",
   "icon": "icon.png",
   "keywords": [
@@ -79,6 +79,11 @@
             "type": "string"
           },
           "description": "List of project names to ignore."
+        },
+        "els.local.useBuiltinLinting": {
+          "type": "boolean",
+          "default": true,
+          "description": "Use builtin ember-template-lint integration (from project deps)"
         }
       }
     }
