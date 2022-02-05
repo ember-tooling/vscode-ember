@@ -29,12 +29,15 @@ import {
 } from "vscode-languageclient/node";
 import { provideCodeLenses } from './lenses';
 let ExtStatusBarItem: StatusBarItem;
+let ExtServerDebugBarItem: StatusBarItem;
 export async function activate(context: ExtensionContext) {
   // The server is implemented in node
   let serverModule = path.join(context.extensionPath, "./start-server.js");
   let config = workspace.getConfiguration("els");
+  let port = config.server.debug.port || 6004;
+  let debugEnabled = config.server.debug.enabled || false;
   // The debug options for the server
-  let debugOptions = { execArgv: ["--nolazy", "--inspect=6004"] };
+  let debugOptions = { execArgv: ["--nolazy", `--inspect=${port}`] };
   // If the extension is launched in debug mode then the debug server options are used
   // Otherwise the run options are used
   let serverOptions: ServerOptions = {
@@ -52,7 +55,7 @@ export async function activate(context: ExtensionContext) {
     }
   }
 
-  const syncExtensions = ["js", "ts", "hbs"];
+  const syncExtensions = ["js", "ts", "hbs", "gts", "gjs"];
   if (config.codeLens.relatedFiles) {
     syncExtensions.push("less", "scss", "css");
   }
@@ -76,6 +79,19 @@ export async function activate(context: ExtensionContext) {
   ExtStatusBarItem.command = ELS_COMMANDS.SET_STATUS_BAR_TEXT;
   ExtStatusBarItem.show();
 
+  ExtServerDebugBarItem = window.createStatusBarItem(StatusBarAlignment.Right, 10);
+  ExtServerDebugBarItem.text = "$(sync) uELS";
+  ExtServerDebugBarItem.command = ELS_COMMANDS.RESTART_SERVER;
+
+  if (debugEnabled) {
+    ExtServerDebugBarItem.show();
+  }
+
+  const fileUsagesProvider = new UsagesProvider();
+
+  let disposable = createDisposable();
+
+
 
   context.subscriptions.push(
     commands.registerCommand('els.fs.readFile', async (filePath: Uri) => {
@@ -83,7 +99,7 @@ export async function activate(context: ExtensionContext) {
       try {
         const data = await workspace.fs.readFile(filePath);
         return data.toString();
-      } catch(e) {
+      } catch (e) {
         return null;
       }
 
@@ -95,7 +111,7 @@ export async function activate(context: ExtensionContext) {
       try {
         const data = await workspace.fs.stat(filePath);
         return data;
-      } catch(e) {
+      } catch (e) {
         return null;
       }
     })
@@ -106,7 +122,7 @@ export async function activate(context: ExtensionContext) {
       try {
         const data = await workspace.fs.readDirectory(filePath);
         return data;
-      } catch(e) {
+      } catch (e) {
         return null;
       }
     })
@@ -122,6 +138,17 @@ export async function activate(context: ExtensionContext) {
     })
   );
 
+  // Push the disposable to the context's subscriptions so that the
+  // client can be deactivated on extension deactivation
+  context.subscriptions.push(
+    commands.registerCommand(ELS_COMMANDS.RESTART_SERVER, async () => {
+      ExtServerDebugBarItem.text = "$(sync) uELS [killing]";
+      await disposable.stop();
+      ExtServerDebugBarItem.text = "$(sync) uELS [starting]";
+      disposable = createDisposable();
+      await disposable.onReady();
+    })
+  );
 
   context.subscriptions.push(
     commands.registerCommand(ELS_COMMANDS.PROXY_COMMAND, async (commandName: string, commandOpts: any, callbackCommandName: string, tail: any = {}) => {
@@ -135,7 +162,7 @@ export async function activate(context: ExtensionContext) {
           document = window.activeTextEditor.document.uri.fsPath;
         }
         commands.executeCommand(callbackCommandName, document, result, tail);
-      } catch(e) {
+      } catch (e) {
         window.showErrorMessage(e.toString());
       }
     })
@@ -153,7 +180,7 @@ export async function activate(context: ExtensionContext) {
           document = window.activeTextEditor.document.uri.fsPath;
         }
         commands.executeCommand(callbackCommandName, document, what, tail);
-      } catch(e) {
+      } catch (e) {
         window.showErrorMessage(e.toString());
       }
     })
@@ -181,35 +208,45 @@ export async function activate(context: ExtensionContext) {
       }
     })
   );
-  // Create the language client and start the client.
-  let disposable = new LanguageClient(
-    "emberLanguageServer",
-    "Unstable Ember Language Server",
-    serverOptions,
-    clientOptions
-  );
 
-  const fileUsagesProvider = new UsagesProvider();
 
-  disposable.onReady().then(() => {
-    disposable.onRequest(ExecuteCommandRequest.type.method, async ({command, arguments: args}) => {
-      return commands.executeCommand(command, ...args);
-    });
-    commands.executeCommand(ELS_COMMANDS.SET_CONFIG, config);
-    ExtStatusBarItem.text = "$(telescope) " + 'Ember';
+  function createDisposable() {
+    // Create the language client and start the client.
+    let disposable = new LanguageClient(
+      "emberLanguageServer",
+      "Unstable Ember Language Server",
+      serverOptions,
+      clientOptions,
+      debugEnabled
+    );
 
-    window.onDidChangeActiveTextEditor(()=>{
-      if (window.activeTextEditor) {
-        fileUsagesProvider.refresh();
+    disposable.onReady().then(() => {
+      try {
+        ExtServerDebugBarItem.text = "$(sync) uELS [" + disposable['_serverProcess'].pid + "]";
+      } catch (e) {
+        ExtServerDebugBarItem.text = "$(sync) uELS [no PID]";
       }
-    });
-    let treeView = window.createTreeView('els.fileUsages', {
-      treeDataProvider: fileUsagesProvider
-    });
-    fileUsagesProvider.setView(treeView);
+      disposable.onRequest(ExecuteCommandRequest.type.method, async ({ command, arguments: args }) => {
+        return commands.executeCommand(command, ...args);
+      });
+      commands.executeCommand(ELS_COMMANDS.SET_CONFIG, config);
+      ExtStatusBarItem.text = "$(telescope) " + 'Ember';
 
-  });
-  context.subscriptions.push(disposable.start());
+      window.onDidChangeActiveTextEditor(() => {
+        if (window.activeTextEditor) {
+          fileUsagesProvider.refresh();
+        }
+      });
+      let treeView = window.createTreeView('els.fileUsages', {
+        treeDataProvider: fileUsagesProvider
+      });
+      fileUsagesProvider.setView(treeView);
+
+    });
+    context.subscriptions.push(disposable.start());
+
+    return disposable;
+  }
 
   async function openRelatedFile(...rawFile) {
     let url = Uri.file(rawFile.join(""));

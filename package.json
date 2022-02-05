@@ -4,7 +4,7 @@
   "description": "Provides features like auto complete, goto definition and diagnostics for Ember.js projects",
   "author": "Aleksandr Kanunnikov <lifeart92@gmail.com>",
   "license": "MIT",
-  "version": "3.0.14",
+  "version": "3.0.15",
   "publisher": "lifeart",
   "icon": "icon.png",
   "keywords": [
@@ -54,6 +54,16 @@
     "configuration": {
       "title": "Unstable Ember Language Server",
       "properties": {
+        "els.server.debug.port": {
+          "type": "number",
+          "default": 6004,
+          "description": "Language server debug port"
+        },
+        "els.server.debug.enabled": {
+          "type": "boolean",
+          "default": false,
+          "description": "Show debug icon with PID, on click recreates LS instance"
+        },
         "els.codeLens.relatedFiles": {
           "type": "boolean",
           "default": true,
@@ -130,7 +140,7 @@
     "which-typed-array": "^1.1.7"
   },
   "dependencies": {
-    "@lifeart/ember-language-server": "2.9.0",
+    "@lifeart/ember-language-server": "2.10.0",
     "vscode-languageclient": "7.0.0"
   },
   "volta": {
