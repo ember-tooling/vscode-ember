@@ -19,7 +19,7 @@ All `Ember Language Server` features included.
 
   - Components (Curly, Angle Bracket)
   - Component Arguments (if used in template)
-  - Services
+  - Service names
   - Route/Controller transition functions route names
   - Model names (store methods, model relation definition)
   - Transform names (model definition)
@@ -33,6 +33,7 @@ All `Ember Language Server` features included.
 - Definition providers for (enable features like "Go To Definition" or "Peek Definition"):
 
   - Components (in Templates)
+  - Outlets
   - Helpers (in Templates)
   - Modfiers
   - Models
@@ -64,7 +65,6 @@ All `Ember Language Server` features included.
   - Classic
   - Template Collocation
   - Pods
-  - Module Unification
 
 - Supported Script Files
   - JavaScript
