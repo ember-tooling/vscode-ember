@@ -48,6 +48,10 @@ All `Ember Language Server` features included.
 
   - Related Files (tests, styles, templates, etc)
 
+- Folding ranges provider
+
+  - Foldings provided for handlebars syntax in `hbs`, `js`, `ts`, `gts`, `gjs` files.
+
 - Component usages
 
   - Route Templates
