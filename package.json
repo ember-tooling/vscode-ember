@@ -4,7 +4,7 @@
   "description": "Provides features like auto complete, goto definition and diagnostics for Ember.js projects",
   "author": "Aleksandr Kanunnikov <lifeart92@gmail.com>",
   "license": "MIT",
-  "version": "3.0.18",
+  "version": "3.0.19",
   "publisher": "lifeart",
   "icon": "icon.png",
   "keywords": [
@@ -17,7 +17,6 @@
   "engines": {
     "vscode": "^1.60.0"
   },
-  "preview": true,
   "categories": [
     "Programming Languages",
     "Linters"
