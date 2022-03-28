@@ -4,7 +4,7 @@
   "description": "Provides features like auto complete, goto definition and diagnostics for Ember.js projects",
   "author": "Aleksandr Kanunnikov <lifeart92@gmail.com>",
   "license": "MIT",
-  "version": "3.0.19",
+  "version": "3.0.20",
   "publisher": "lifeart",
   "icon": "icon.png",
   "keywords": [
@@ -71,7 +71,7 @@
         "els.local.collectTemplateTokens": {
           "type": "boolean",
           "default": true,
-          "description": "Disabling may improve startup performance for very large projects, but, also disables Ember File Usages window"
+          "description": "Show components usages across project, disabling may improve startup performance for very large projects, but, also disables Ember File Usages window"
         },
         "els.local.addons": {
           "type": "array",
@@ -87,12 +87,17 @@
           "items": {
             "type": "string"
           },
-          "description": "List of project names to ignore."
+          "description": "List of project names to ignore, also accept ! symbol before name, to ignore all except specified, e.g. !my-project"
         },
         "els.local.useBuiltinLinting": {
           "type": "boolean",
           "default": true,
           "description": "Use builtin ember-template-lint integration (from project deps)"
+        },
+        "els.local.useBuiltinFoldingRangeProvider": {
+          "type": "boolean",
+          "default": true,
+          "description": "Folding range provider for .hbs files, disabling may improve startup performance for very large projects"
         }
       }
     }
@@ -139,7 +144,7 @@
     "which-typed-array": "^1.1.7"
   },
   "dependencies": {
-    "@lifeart/ember-language-server": "2.14.0",
+    "@lifeart/ember-language-server": "2.16.0",
     "vscode-languageclient": "7.0.0"
   },
   "volta": {

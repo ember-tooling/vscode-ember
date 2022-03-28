@@ -534,10 +534,10 @@
   dependencies:
     "@babel/traverse" "^7.17.0"
 
-"@lifeart/ember-language-server@2.14.0":
-  version "2.14.0"
-  resolved "https://registry.yarnpkg.com/@lifeart/ember-language-server/-/ember-language-server-2.14.0.tgz#22c554c603d6631a249e2e682fce830213396191"
-  integrity sha512-HlKnaJ5Jjn2Bx1QUhr2JFLrXS/EriYPMtqGKuXRakQ2t+oGj8tvkZZULICmAePMdu2PIrMa93MWtXprclEAcEw==
+"@lifeart/ember-language-server@2.16.0":
+  version "2.16.0"
+  resolved "https://registry.yarnpkg.com/@lifeart/ember-language-server/-/ember-language-server-2.16.0.tgz#89f654b4bd4613b4a86bd4e2ff8d7963350b0917"
+  integrity sha512-wkKk83KXwU6H/hf185EarUWdIRltjqHlhKtKArADSihnOGr7ZgBpSP8EjbdYJOMJKKSsqxvb8Qv6GcUJb1aG9A==
   dependencies:
     "@glimmer/syntax" "^0.83.1"
     "@lifeart/ember-extract-inline-templates" "2.2.0"

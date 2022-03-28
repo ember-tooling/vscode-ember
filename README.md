@@ -93,6 +93,7 @@ Using this addons as dev-dependencies in your project (or downloading and provid
 - `els.server.debug.enabled` - disable / enable LS debug
 - `els.codeLens.relatedFiles` - disable / enable related files
 - `els.local.useBuiltinLinting` - disable / enable ember-template-lint integration
+- `els.local.useBuiltinFoldingRangeProvider` - disable / enable folding range provider (hbs)
 - `els.local.addons` - globally defined local language server addons entry folders, for example:
 
 ```js
