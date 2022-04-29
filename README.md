@@ -1,8 +1,8 @@
 # vscode-ember
 
-This is the VSCode extension to use the [Unstable Ember Language Server](https://github.com/lifeart/ember-language-server).
+This is the VSCode extension to use the [Stable Ember Language Server](https://github.com/lifeart/ember-language-server).
 
-`Unstable Ember Language Server` is full-featured fork of [Ember Language Server](https://github.com/emberwatch/ember-language-server). It's `stable` and `extremely` power-featured.
+`Stable Ember Language Server` is full-featured fork of [Ember Language Server](https://github.com/emberwatch/ember-language-server). It's `stable` and `extremely` power-featured.
 
 All `Ember Language Server` features included.
 
@@ -83,7 +83,7 @@ Using this addons as dev-dependencies in your project (or downloading and provid
 - [els-addon-typed-templates](https://github.com/lifeart/els-addon-typed-templates) - Typed Templates for Ember.
 - [els-addon-docs](https://github.com/lifeart/els-addon-docs) - Ember Language Server Addon Docs Completion Provider.
 - [ember-fast-cli](https://github.com/lifeart/ember-fast-cli) - Addon for Ember-cli commands execution.
-- [els-intl-addon](https://github.com/lifeart/els-intl-addon) - Internationalization addon for Unstable Ember Language Server.
+- [els-intl-addon](https://github.com/lifeart/els-intl-addon) - Internationalization addon for Stable Ember Language Server.
 - [els-component-extraction-addon](https://github.com/lifeart/els-component-extraction-addon) - Create components from selection, using `ember-fast-cli`.
 - [els-addon-file-watcher](https://github.com/lifeart/els-addon-file-watcher) - Project change detection addon (not needed for VSCode users)
 
