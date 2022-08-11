@@ -1,16 +1,47 @@
 import * as vscode from 'vscode';
 import { COMMANDS as ELS_COMMANDS } from './constants';
 
+export class FileUsages {
+	constructor() {
+		const treeDataProvider = new UsagesProvider();
+    const treeView = vscode.window.createTreeView('els.fileUsages', { treeDataProvider });
+
+    treeDataProvider.setView(treeView);
+	}
+}
 
 export class UsagesProvider implements vscode.TreeDataProvider<Dependency> {
-  constructor() { }
+  constructor() {
+    vscode.window.onDidChangeActiveTextEditor(() => this.onActiveEditorChanged());
+
+    this.onActiveEditorChanged();
+  }
 
   private _onDidChangeTreeData: vscode.EventEmitter<Dependency | undefined> = new vscode.EventEmitter<Dependency | undefined>();
   readonly onDidChangeTreeData: vscode.Event<Dependency | undefined> = this._onDidChangeTreeData.event;
+
   private view !: vscode.TreeView<Dependency>;
+
+  private onActiveEditorChanged(): void {
+		if (vscode.window.activeTextEditor) {
+			if (vscode.window.activeTextEditor.document.uri.scheme === 'file') {
+				const enabled = ["handlebars", "javascript", "typescript"].includes(vscode.window.activeTextEditor.document.languageId);
+
+        vscode.commands.executeCommand('setContext', 'emberFileUsagesEnabled', enabled);
+
+        if (enabled) {
+					this.refresh();
+				}
+			}
+		} else {
+			vscode.commands.executeCommand('setContext', 'emberFileUsagesEnabled', false);
+		}
+	}
+
   setView(view: vscode.TreeView<Dependency>) {
     this.view = view;
   }
+
   refresh() {
     this._onDidChangeTreeData.fire(null);
   }

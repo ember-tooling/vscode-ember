@@ -6,7 +6,7 @@
 
 import * as path from "path";
 import { COMMANDS as ELS_COMMANDS } from './constants';
-import { UsagesProvider } from './usages-provider';
+import { FileUsages } from './usages-provider';
 import {
   workspace,
   ExtensionContext,
@@ -87,11 +87,7 @@ export async function activate(context: ExtensionContext) {
     ExtServerDebugBarItem.show();
   }
 
-  const fileUsagesProvider = new UsagesProvider();
-
   let disposable = createDisposable();
-
-
 
   context.subscriptions.push(
     commands.registerCommand('els.fs.readFile', async (filePath: Uri) => {
@@ -232,16 +228,8 @@ export async function activate(context: ExtensionContext) {
       commands.executeCommand(ELS_COMMANDS.SET_CONFIG, config);
       ExtStatusBarItem.text = "$(telescope) " + 'Ember';
 
-      window.onDidChangeActiveTextEditor(() => {
-        if (window.activeTextEditor) {
-          fileUsagesProvider.refresh();
-        }
-      });
-      let treeView = window.createTreeView('els.fileUsages', {
-        treeDataProvider: fileUsagesProvider
-      });
-      fileUsagesProvider.setView(treeView);
-
+      // Ember File Usages
+      new FileUsages();
     });
     context.subscriptions.push(disposable.start());
 
@@ -276,4 +264,3 @@ export async function activate(context: ExtensionContext) {
   }
 
 }
-

@@ -1,6 +1,6 @@
 "use strict";
 
-import { UsagesProvider } from './usages-provider';
+import { FileUsages } from './usages-provider';
 import { provideCodeLenses } from './lenses';
 
 import {
@@ -107,9 +107,6 @@ export async function activate(context: ExtensionContext) {
   // Create the language client and start the client.
   let disposable = createWorkerLanguageClient(context, clientOptions);
 
-  const fileUsagesProvider = new UsagesProvider();
-
-
   async function openRelatedFile(...rawFile) {
     let url = Uri.file(rawFile.join(""));
     commands.executeCommand("vscode.open", url);
@@ -143,17 +140,8 @@ export async function activate(context: ExtensionContext) {
     }});
     ExtStatusBarItem.text = "$(telescope) " + 'Ember';
 
-    window.onDidChangeActiveTextEditor(()=>{
-      if (window.activeTextEditor) {
-        fileUsagesProvider.refresh();
-      }
-    });
-
-    let treeView = window.createTreeView('els.fileUsages', {
-      treeDataProvider: fileUsagesProvider
-    });
-    fileUsagesProvider.setView(treeView);
-
+    // Ember File Usages
+    new FileUsages();
   });
   context.subscriptions.push(disposable.start());
 

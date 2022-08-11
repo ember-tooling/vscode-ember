@@ -40,7 +40,8 @@
       "explorer": [
         {
           "id": "els.fileUsages",
-          "name": "Ember File Usages"
+          "name": "Ember File Usages",
+          "when": "emberFileUsagesEnabled"
         }
       ]
     },
