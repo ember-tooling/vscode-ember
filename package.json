@@ -103,7 +103,7 @@
       }
     }
   },
-  "main": "./dist/node/client/nodeClientMain",
+  "main": "client",
   "browser": "./dist/web/client/browserClientMain",
   "scripts": {
     "vs:package": "vsce package --yarn",
@@ -111,7 +111,9 @@
     "vs:publish:ci": "vsce publish --yarn --pat $VSCODE_STORE_TOKEN",
     "ov:publish:ci": "ovsx publish --yarn --pat $OPEN_VSX_STORE_TOKEN",
     "compile": "tsc -p ./",
-    "watch": "tsc -watch -p ./",
+    "watch": "yarn watch:client & yarn watch:server",
+    "watch:client": "tsc -b -w",
+    "watch:server": "cd ./node_modules/@lifeart/ember-language-server && yarn watch",
     "postinstall": "yarn compile",
     "clean:cache": "yarn cache clean @lifeart/ember-language-server",
     "build:langserver": "yarn --cwd ./node_modules/@lifeart/ember-language-server prepublish",

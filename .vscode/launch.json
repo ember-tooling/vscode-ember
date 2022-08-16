@@ -1,48 +1,28 @@
 {
-  "version":"0.1.0",
-  "configurations":[
+  "version": "0.2.0",
+  "configurations": [
     {
-			"name": "Launch Tests",
-			"type": "extensionHost",
-			"request": "launch",
-			"runtimeExecutable": "${execPath}",
-			"args": [
-				"--extensionDevelopmentPath=${workspaceRoot}",
-				"--extensionTestsPath=${workspaceRoot}/out/test"
-			],
-			"stopOnEntry": false,
-			"sourceMaps": true,
-			"outFiles": [
-				"${workspaceRoot}/out/test/**/*.js"
-			],
-			"preLaunchTask": "npm"
-		},
-     {
-        "name":"Launch UELS Extension",
-        "type":"extensionHost",
-        "request":"launch",
-        "runtimeExecutable":"${execPath}",
-        "args":[
-           "--extensionDevelopmentPath=${workspaceRoot}"
-        ],
-        "stopOnEntry":false,
-        "sourceMaps":true,
-        "outFiles":[
-          "${workspaceRoot}/out/src/**/*.js"
-        ]
-     },
-     {
-        "name":"Attach to UELS Server",
-        "type":"node",
-        "request":"attach",
-        "port":6004,
-        "sourceMaps":true,
-        "protocol":"inspector",
-        "outFiles":[
-           "${workspaceRoot}/node_modules/@lifeart/ember-language-server/lib/**/*.js"
-        ],
-        "restart":true,
-        "smartStep":true
-     }
-  ]
+      "name": "Launch Client",
+      "type": "extensionHost",
+      "request": "launch",
+      "runtimeExecutable": "${execPath}",
+      "args": [
+        "--extensionDevelopmentPath=${workspaceRoot}"
+      ],
+      "outFiles": [
+        "${workspaceRoot}/out/**/*.js",
+      ],
+      "preLaunchTask": {
+        "type": "npm",
+        "script": "watch"
+      }
+    },
+  ],
+	"compounds": [
+		{
+			"name": "Client + Server",
+			"configurations": ["Launch Client", "Attach"], //"Attach" is in ember-language-server project
+      "stopAll": true,
+		}
+	]
 }
