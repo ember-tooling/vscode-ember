@@ -17,6 +17,18 @@
         "script": "watch"
       }
     },
+    {
+      "name":"Attach to UELS Server",
+      "type":"node",
+      "request":"attach",
+      "port":6004,
+      "sourceMaps":true,
+      "outFiles":[
+         "${workspaceRoot}/node_modules/@lifeart/ember-language-server/lib/**/*.js"
+      ],
+      "restart":true,
+      "smartStep":true
+   }
   ],
 	"compounds": [
 		{
