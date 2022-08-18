@@ -75,7 +75,8 @@ export async function activate(context: ExtensionContext) {
   };
 
   ExtStatusBarItem = window.createStatusBarItem(StatusBarAlignment.Right, 10);
-  ExtStatusBarItem.text = "$(telescope) Ember Loading...";
+  ExtStatusBarItem.text = "$(ember-logo) Ember Loading...";
+  ExtStatusBarItem.tooltip = 'Ember';
   ExtStatusBarItem.command = ELS_COMMANDS.SET_STATUS_BAR_TEXT;
   ExtStatusBarItem.show();
 
@@ -128,9 +129,9 @@ export async function activate(context: ExtensionContext) {
   // client can be deactivated on extension deactivation
   context.subscriptions.push(
     commands.registerCommand(ELS_COMMANDS.SET_STATUS_BAR_TEXT, async () => {
-      ExtStatusBarItem.text = "$(telescope) " + 'Reloading projects...';
+      ExtStatusBarItem.text = "$(ember-logo) " + 'Reloading projects...';
       await commands.executeCommand(ELS_COMMANDS.RELOAD_PROJECT);
-      ExtStatusBarItem.text = "$(telescope) " + 'Ember';
+      ExtStatusBarItem.text = "$(ember-logo)";
     })
   );
 
@@ -226,7 +227,7 @@ export async function activate(context: ExtensionContext) {
         return commands.executeCommand(command, ...args);
       });
       commands.executeCommand(ELS_COMMANDS.SET_CONFIG, config);
-      ExtStatusBarItem.text = "$(telescope) " + 'Ember';
+      ExtStatusBarItem.text = "$(ember-logo)";
 
       // Ember File Usages
       new FileUsages();

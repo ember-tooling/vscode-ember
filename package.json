@@ -101,6 +101,15 @@
           "description": "Folding range provider for .hbs files, disabling may improve startup performance for very large projects"
         }
       }
+    },
+    "icons": {
+      "ember-logo": {
+        "description": "Ember",
+        "default": {
+          "fontPath": "assets/icons.woff",
+          "fontCharacter": "\\F0B30"
+        }
+      }
     }
   },
   "main": "client",
