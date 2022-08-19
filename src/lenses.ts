@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 import {
   CodeLens,
@@ -6,8 +6,8 @@ import {
   TextDocument,
   CancellationToken,
   commands,
-  Position
-} from "vscode";
+  Position,
+} from 'vscode';
 
 export type MatchResultType =
   | 'helper'
@@ -41,14 +41,14 @@ interface Result {
 import { COMMANDS as ELS_COMMANDS } from './constants';
 
 function normalizePath(str: string): string {
-  return str.split("\\").join("/");
+  return str.split('\\').join('/');
 }
 
 function getActiveMeta(document, results: Result[]): MatchResult | null {
-  let fsPath = normalizePath(document.uri.fsPath);
+  const fsPath = normalizePath(document.uri.fsPath);
 
   for (let i = 0; i < results.length; i++) {
-    let normPath = normalizePath(results[i].path);
+    const normPath = normalizePath(results[i].path);
     if (normPath === fsPath) {
       return results[i].meta;
     }
@@ -57,17 +57,17 @@ function getActiveMeta(document, results: Result[]): MatchResult | null {
   return null;
 }
 function lenseNameFromPath(document, f: Result, meta: MatchResult | null) {
-  let normPath = normalizePath(f.path);
-  let fsPath = normalizePath(document.uri.fsPath);
+  const normPath = normalizePath(f.path);
+  const fsPath = normalizePath(document.uri.fsPath);
   const isActive = fsPath === normPath;
-  const isAddonApp = normPath.includes("/app/");
-  const isDummyApp = normPath.includes("/tests/dummy/");
+  const isAddonApp = normPath.includes('/app/');
+  const isDummyApp = normPath.includes('/tests/dummy/');
   const isAddonExport = f.meta.scope === 'addon';
   const isRoutePath = ['route', 'controller', 'template'].includes(f.meta.type);
   const typeKey = isRoutePath ? `:${f.meta.type}:` : ':';
   let scope = isAddonExport && isAddonApp ? 'addon-app' : f.meta.scope;
   if (isDummyApp) {
-    scope = 'dummy-app'
+    scope = 'dummy-app';
     if (f.meta.kind === 'test') {
       f.meta.kind = 'script';
     }
@@ -80,7 +80,7 @@ function lenseNameFromPath(document, f: Result, meta: MatchResult | null) {
   }
   name = name.replace(`${f.meta.type}:script`, f.meta.type);
   if (isActive) {
-    name = "_" + name + "_";
+    name = '_' + name + '_';
   }
   return name.trim();
 }
@@ -109,14 +109,14 @@ export async function provideCodeLenses(
   const meta = getActiveMeta(document, relatedFiles);
   const lenseNames = relatedFiles.map((f: Result) => {
     const name = lenseNameFromPath(document, f, meta);
-    return { name, path: f.path.split(""), tooltip: f.path };
-  })
+    return { name, path: f.path.split(''), tooltip: f.path };
+  });
   return lenseNames.map(({ name, path, tooltip }) => {
     return new CodeLens(new Range(new Position(0, 0), new Position(0, 0)), {
       title: name,
-      tooltip: "Ember: " + tooltip,
+      tooltip: 'Ember: ' + tooltip,
       command: ELS_COMMANDS.OPEN_RELATED_FILE,
-      arguments: path
+      arguments: path,
     });
   });
 }

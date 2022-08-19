@@ -9,5 +9,5 @@ export const COMMANDS = {
   EXECUTE_IN_EMBER_CLI: 'els.executeInEmberCLI',
   SET_CONFIG: 'els.setConfig',
   GET_RELATED_FILES: 'els.getRelatedFiles',
-  GET_KIND_USAGES: 'els.getKindUsages'
-}
+  GET_KIND_USAGES: 'els.getKindUsages',
+};
