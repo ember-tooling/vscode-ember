@@ -5,3 +5,4 @@ vscode-ember-unstable*
 .vsix
 .vscode-test-web
 dist
+yarn-error.log
