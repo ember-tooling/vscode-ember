@@ -137,6 +137,9 @@
   "resolutions": {
     "@lifeart/ember-language-server/find-up": "6.3.0",
     "@lifeart/ember-language-server/find-up/locate-path": "7.1.0",
+    "@lifeart/ember-language-server/find-up/locate-path/p-locate": "6.0.0",
+    "@lifeart/ember-language-server/find-up/locate-path/p-locate/p-limit": "^4.0.0",
+    "@lifeart/ember-language-server/find-up/locate-path/p-locate/p-limit/yocto-queue": "^1.0.0",
     "@lifeart/ember-language-server/find-up/path-exists": "5.0.0",
     "eslint/find-up": "4.1.0",
     "webpack-cli/import-local/pkg-dir/find-up": "4.1.0"
