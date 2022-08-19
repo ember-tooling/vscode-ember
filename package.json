@@ -135,7 +135,8 @@
     "lint:fix": "yarn lint --fix"
   },
   "resolutions": {
-    "find-up": "6.3.0"
+    "find-up": "6.3.0",
+    "pkg-dir": "7.0.0"
   },
   "devDependencies": {
     "@types/mocha": "^2.2.33",
