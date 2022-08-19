@@ -6,7 +6,7 @@ This is the VSCode extension to use the [Stable Ember Language Server](https://g
 
 All `Ember Language Server` features included.
 
-![preview](preview.gif)
+![preview](assets/preview.gif)
 
 ## Best with
 

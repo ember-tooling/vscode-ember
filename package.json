@@ -6,7 +6,7 @@
   "license": "MIT",
   "version": "3.0.34",
   "publisher": "lifeart",
-  "icon": "icon.png",
+  "icon": "assets/icon.png",
   "keywords": [
     "Ember.js",
     "Ember-CLI",
