@@ -135,8 +135,9 @@
     "lint:fix": "yarn lint --fix"
   },
   "resolutions": {
-    "find-up": "6.3.0",
-    "pkg-dir": "7.0.0"
+    "@lifeart/ember-language-server/find-up": "6.3.0",
+    "eslint/find-up": "4.1.0",
+    "webpack-cli/import-local/pkg-dir/find-up": "4.1.0"
   },
   "devDependencies": {
     "@types/mocha": "^2.2.33",
@@ -164,7 +165,7 @@
     "util": "^0.12.4",
     "vsce": "1.100.1",
     "webpack": "^5.44.0",
-    "webpack-cli": "^4.7.2",
+    "webpack-cli": "^4.10.0",
     "which-typed-array": "^1.1.7"
   },
   "dependencies": {
