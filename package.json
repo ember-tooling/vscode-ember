@@ -134,6 +134,9 @@
     "lint": "eslint src --ext ts",
     "lint:fix": "yarn lint --fix"
   },
+  "resolutions": {
+    "find-up": "6.3.0"
+  },
   "devDependencies": {
     "@types/mocha": "^2.2.33",
     "@types/node": "^6.0.52",
