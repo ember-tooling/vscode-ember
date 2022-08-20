@@ -2,7 +2,7 @@
 
 This is the VSCode extension to use the [Stable Ember Language Server](https://github.com/lifeart/ember-language-server).
 
-`Stable Ember Language Server` is full-featured fork of [Ember Language Server](https://github.com/emberwatch/ember-language-server). It's `stable` and `extremely` power-featured.
+`Stable Ember Language Server` is full-featured fork of [Ember Language Server](https://github.com/ember-tooling/ember-language-server). It's `stable` and `extremely` power-featured.
 
 All `Ember Language Server` features included.
 
@@ -11,7 +11,7 @@ All `Ember Language Server` features included.
 ## Best with
 
 - [Glimmer Templates Syntax for VS Code](https://marketplace.visualstudio.com/items?itemName=lifeart.vscode-glimmer-syntax)
-- [Prettier for Handlebars](https://marketplace.visualstudio.com/items?itemName=EmberTooling.prettier-for-handlebars-vscode)
+- [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
 
 ## Features
 
@@ -116,4 +116,4 @@ _Note: `ignoredProjects` leverages the projectName from the `name` property of t
 
 ## Debugging
 
-See [debugging article](https://github.com/lifeart/ember-language-server/blob/component-context-info-origin/DEBUGGING.md)
+See [debugging page](DEBUGGING.md)
