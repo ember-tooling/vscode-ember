@@ -180,7 +180,7 @@
     "p-limit": "^4.0.0",
     "yocto-queue": "^1.0.0",
     "path-exists": "5.0.0",
-    "@lifeart/ember-language-server": "2.26.1",
+    "@lifeart/ember-language-server": "2.28.0",
     "vscode-languageclient": "7.0.0"
   },
   "volta": {
