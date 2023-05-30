@@ -24,6 +24,7 @@ All `Ember Language Server` features included.
   - Model names (store methods, model relation definition)
   - Transform names (model definition)
   - Helpers
+  - Yield slot names
   - Modifiers
   - Get / Set / ... / Computed macros
   - Local paths in templates (`this...`)
@@ -35,7 +36,7 @@ All `Ember Language Server` features included.
   - Components (in Templates)
   - Outlets
   - Helpers (in Templates)
-  - Modfiers
+  - Modifiers
   - Models
   - Transforms
   - Routes
