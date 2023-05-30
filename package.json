@@ -4,7 +4,7 @@
   "description": "(aka uELS, Unstable Ember Language Server), Provides features like auto complete, goto definition and diagnostics for Ember.js projects",
   "author": "Aleksandr Kanunnikov <lifeart92@gmail.com>",
   "license": "MIT",
-  "version": "3.0.49",
+  "version": "3.0.50",
   "publisher": "lifeart",
   "icon": "assets/icon.png",
   "keywords": [
@@ -32,6 +32,8 @@
     "onLanguage:handlebars",
     "onLanguage:javascript",
     "onLanguage:typescript",
+    "onLanguage:glimmer-js",
+    "onLanguage:glimmer-ts",
     "workspaceContains:ember-cli-build.js",
     "onCommand:els.runInEmberCLI"
   ],

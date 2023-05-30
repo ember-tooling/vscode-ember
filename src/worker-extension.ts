@@ -36,7 +36,13 @@ export async function activate(context: ExtensionContext) {
   // Options to control the language client
   const clientOptions: LanguageClientOptions = {
     // Register the server for plain text documents
-    documentSelector: ['handlebars', 'javascript', 'typescript'].map((el) => {
+    documentSelector: [
+      'handlebars',
+      'glimmer-ts',
+      'glimmer-js',
+      'javascript',
+      'typescript',
+    ].map((el) => {
       return {
         language: el,
         scheme: 'file',

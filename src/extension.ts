@@ -63,7 +63,13 @@ export async function activate(context: ExtensionContext) {
   // Options to control the language client
   const clientOptions: LanguageClientOptions = {
     // Register the server for plain text documents
-    documentSelector: ['handlebars', 'javascript', 'typescript'],
+    documentSelector: [
+      'handlebars',
+      'glimmer-ts',
+      'glimmer-js',
+      'javascript',
+      'typescript',
+    ],
     outputChannelName: 'Unstable Ember Language Server',
     revealOutputChannelOn: RevealOutputChannelOn.Never,
     initializationOptions: { editor: 'vscode' },

@@ -31,9 +31,13 @@ export class UsagesProvider implements vscode.TreeDataProvider<Dependency> {
   private onActiveEditorChanged(): void {
     if (vscode.window.activeTextEditor) {
       if (vscode.window.activeTextEditor.document.uri.scheme === 'file') {
-        const enabled = ['handlebars', 'javascript', 'typescript'].includes(
-          vscode.window.activeTextEditor.document.languageId
-        );
+        const enabled = [
+          'handlebars',
+          'javascript',
+          'typescript',
+          'glimmer-js',
+          'glimmer-ts',
+        ].includes(vscode.window.activeTextEditor.document.languageId);
 
         vscode.commands.executeCommand(
           'setContext',
