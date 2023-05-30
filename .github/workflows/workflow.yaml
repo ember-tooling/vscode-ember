@@ -18,10 +18,15 @@ jobs:
       - name: fetch all history and tags from all branches for gitversion
         run: git fetch --prune --unshallow
 
+      - name: DotNet Core SDK 2.1.x
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 2.1.x
+        
       - name: install gitversion tool
         uses: gittools/actions/gitversion/setup@v0.9
         with:
-            versionSpec: '5.5.x'
+          versionSpec: '5.5.x'
         env:
           ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
 
