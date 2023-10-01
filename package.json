@@ -4,7 +4,7 @@
   "description": "(aka uELS, Unstable Ember Language Server), Provides features like auto complete, goto definition and diagnostics for Ember.js projects",
   "author": "Aleksandr Kanunnikov <lifeart92@gmail.com>",
   "license": "MIT",
-  "version": "3.0.51",
+  "version": "3.0.52",
   "publisher": "lifeart",
   "icon": "assets/icon.png",
   "keywords": [
@@ -182,7 +182,7 @@
     "p-limit": "^4.0.0",
     "yocto-queue": "^1.0.0",
     "path-exists": "5.0.0",
-    "@lifeart/ember-language-server": "2.29.0",
+    "@lifeart/ember-language-server": "2.30.0",
     "vscode-languageclient": "7.0.0"
   },
   "volta": {
