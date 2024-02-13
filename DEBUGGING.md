@@ -8,6 +8,6 @@
  - Go to `ember-language-server` folder
  - Run `yarn link`
  - Go to `vscode-ember` folder
- - Run `yarn link @lifeart/ember-language-server`
+ - Run `yarn link @ember-tooling/ember-language-server`
  - Add `ember-language-server` folder to workspace, you will have a [multi-root workspace](https://code.visualstudio.com/docs/editor/multi-root-workspaces)
  - Run debugger `Client + Server`

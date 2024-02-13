@@ -22,7 +22,7 @@ jobs:
         uses: actions/setup-dotnet@v1
         with:
           dotnet-version: 3.1.x
-        
+
       - name: install gitversion tool
         uses: gittools/actions/gitversion/setup@v0.9
         with:
@@ -76,8 +76,8 @@ jobs:
       - name: upload vsix as artifact
         uses: actions/upload-artifact@v2
         with:
-          name: vscode-ember-unstable-${{steps.gitversion.outputs.majorMinorPatch}}.vsix
-          path: ${{github.workspace}}/vscode-ember-unstable-${{steps.gitversion.outputs.majorMinorPatch}}.vsix
+          name: vscode-ember-${{steps.gitversion.outputs.majorMinorPatch}}.vsix
+          path: ${{github.workspace}}/vscode-ember-${{steps.gitversion.outputs.majorMinorPatch}}.vsix
 
       - name: create a release
         if: github.ref == 'refs/heads/master'

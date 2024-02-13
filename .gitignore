@@ -1,7 +1,7 @@
 out
 server
 node_modules
-vscode-ember-unstable*
+vscode-ember*
 .vsix
 .vscode-test-web
 dist

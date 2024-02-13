@@ -48,7 +48,7 @@ export async function activate(context: ExtensionContext) {
         scheme: 'file',
       };
     }),
-    outputChannelName: 'Unstable Ember Language Server',
+    outputChannelName: 'Ember Language Server',
     revealOutputChannelOn: RevealOutputChannelOn.Never,
     synchronize: {},
     initializationOptions: { editor: 'vscode' },
@@ -171,16 +171,16 @@ function createWorkerLanguageClient(
   // Create a worker. The worker main file implements the language server.
   const serverMain = Uri.joinPath(
     context.extensionUri,
-    'node_modules/@lifeart/ember-language-server/dist/bundled/start-worker-server.js'
+    'node_modules/@ember-tooling/ember-language-server/dist/bundled/start-worker-server.js'
   );
   const worker = new Worker(serverMain.toString(), {
-    name: '@lifeart/ember-language-server',
+    name: '@ember-tooling/ember-language-server',
     type: 'classic',
   });
   // create the language server client to communicate with the server running in the worker
   return new LanguageClient(
     'emberLanguageServer',
-    'Unstable Ember Language Server',
+    'Ember Language Server',
     clientOptions,
     worker
   );

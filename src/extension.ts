@@ -70,7 +70,7 @@ export async function activate(context: ExtensionContext) {
       'javascript',
       'typescript',
     ],
-    outputChannelName: 'Unstable Ember Language Server',
+    outputChannelName: 'Ember Language Server',
     revealOutputChannelOn: RevealOutputChannelOn.Never,
     initializationOptions: { editor: 'vscode' },
     synchronize: {
@@ -90,7 +90,7 @@ export async function activate(context: ExtensionContext) {
     StatusBarAlignment.Right,
     10
   );
-  ExtServerDebugBarItem.text = '$(sync) uELS';
+  ExtServerDebugBarItem.text = '$(sync) ELS';
   ExtServerDebugBarItem.command = ELS_COMMANDS.RESTART_SERVER;
 
   if (debugEnabled) {
@@ -146,9 +146,9 @@ export async function activate(context: ExtensionContext) {
   // client can be deactivated on extension deactivation
   context.subscriptions.push(
     commands.registerCommand(ELS_COMMANDS.RESTART_SERVER, async () => {
-      ExtServerDebugBarItem.text = '$(sync) uELS [killing]';
+      ExtServerDebugBarItem.text = '$(sync) ELS [killing]';
       await disposable.stop();
-      ExtServerDebugBarItem.text = '$(sync) uELS [starting]';
+      ExtServerDebugBarItem.text = '$(sync) ELS [starting]';
       disposable = createDisposable();
       await disposable.onReady();
     })
@@ -247,7 +247,7 @@ export async function activate(context: ExtensionContext) {
     // Create the language client and start the client.
     const disposable = new LanguageClient(
       'emberLanguageServer',
-      'Unstable Ember Language Server',
+      'Ember Language Server',
       serverOptions,
       clientOptions,
       debugEnabled
@@ -256,9 +256,9 @@ export async function activate(context: ExtensionContext) {
     disposable.onReady().then(() => {
       try {
         ExtServerDebugBarItem.text =
-          '$(sync) uELS [' + disposable['_serverProcess'].pid + ']';
+          '$(sync) ELS [' + disposable['_serverProcess'].pid + ']';
       } catch (e) {
-        ExtServerDebugBarItem.text = '$(sync) uELS [no PID]';
+        ExtServerDebugBarItem.text = '$(sync) ELS [no PID]';
       }
       disposable.onRequest(
         ExecuteCommandRequest.type.method,

@@ -1,18 +1,18 @@
 {
-  "name": "vscode-ember-unstable",
-  "displayName": "Stable Ember Language Server",
-  "description": "(aka uELS, Unstable Ember Language Server), Provides features like auto complete, goto definition and diagnostics for Ember.js projects",
+  "name": "vscode-ember",
+  "displayName": "Ember Language Server",
+  "description": "Provides features like auto complete, goto definition and diagnostics for Ember.js projects",
   "author": "Aleksandr Kanunnikov <lifeart92@gmail.com>",
   "license": "MIT",
   "version": "3.0.53",
-  "publisher": "lifeart",
+  "publisher": "EmberTooling",
   "icon": "assets/icon.png",
   "keywords": [
     "Ember.js",
     "Ember-CLI",
     "Glimmer",
     "Handlebars",
-    "Unstable Language server"
+    "Ember Language server"
   ],
   "engines": {
     "vscode": "^1.60.0"
@@ -23,10 +23,10 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/lifeart/vscode-ember"
+    "url": "https://github.com/ember-tooling/vscode-ember"
   },
   "bugs": {
-    "url": "https://github.com/lifeart/vscode-ember/issues"
+    "url": "https://github.com/ember-tooling/vscode-ember/issues"
   },
   "activationEvents": [
     "onLanguage:handlebars",
@@ -54,11 +54,11 @@
       }
     ],
     "configuration": {
-      "title": "Unstable Ember Language Server",
+      "title": "Ember Language Server",
       "properties": {
         "els.server.debug.port": {
           "type": "number",
-          "default": 6004,
+          "default": 6003,
           "description": "Language server debug port"
         },
         "els.server.debug.enabled": {
@@ -82,7 +82,7 @@
           "items": {
             "type": "string"
           },
-          "description": "List of UELS addons paths to include."
+          "description": "List of ELS addons paths to include."
         },
         "els.local.ignoredProjects": {
           "type": "array",
@@ -124,10 +124,10 @@
     "compile": "tsc -p ./",
     "watch": "yarn watch:client & yarn watch:server",
     "watch:client": "tsc -b -w",
-    "watch:server": "cd ./node_modules/@lifeart/ember-language-server && yarn watch",
+    "watch:server": "cd ./node_modules/@ember-tooling/ember-language-server && yarn watch",
     "postinstall": "yarn compile",
-    "clean:cache": "yarn cache clean @lifeart/ember-language-server",
-    "build:langserver": "yarn --cwd ./node_modules/@lifeart/ember-language-server prepublish",
+    "clean:cache": "yarn cache clean @ember-tooling/ember-language-server",
+    "build:langserver": "yarn --cwd ./node_modules/@ember-tooling/ember-language-server prepublish",
     "web:compile": "webpack",
     "web:watch": "webpack --watch",
     "web:package": "webpack --mode production",
@@ -137,12 +137,12 @@
     "lint:fix": "yarn lint --fix"
   },
   "resolutions": {
-    "@lifeart/ember-language-server/find-up": "6.3.0",
-    "@lifeart/ember-language-server/find-up/locate-path": "7.1.0",
-    "@lifeart/ember-language-server/find-up/locate-path/p-locate": "6.0.0",
-    "@lifeart/ember-language-server/find-up/locate-path/p-locate/p-limit": "^4.0.0",
-    "@lifeart/ember-language-server/find-up/locate-path/p-locate/p-limit/yocto-queue": "^1.0.0",
-    "@lifeart/ember-language-server/find-up/path-exists": "5.0.0",
+    "@ember-tooling/ember-language-server/find-up": "6.3.0",
+    "@ember-tooling/ember-language-server/find-up/locate-path": "7.1.0",
+    "@ember-tooling/ember-language-server/find-up/locate-path/p-locate": "6.0.0",
+    "@ember-tooling/ember-language-server/find-up/locate-path/p-locate/p-limit": "^4.0.0",
+    "@ember-tooling/ember-language-server/find-up/locate-path/p-locate/p-limit/yocto-queue": "^1.0.0",
+    "@ember-tooling/ember-language-server/find-up/path-exists": "5.0.0",
     "eslint/find-up": "4.1.0",
     "webpack-cli/import-local/pkg-dir/find-up": "4.1.0"
   },
@@ -182,7 +182,7 @@
     "p-limit": "^4.0.0",
     "yocto-queue": "^1.0.0",
     "path-exists": "5.0.0",
-    "@lifeart/ember-language-server": "2.30.1",
+    "@ember-tooling/ember-language-server": "2.30.1",
     "vscode-languageclient": "7.0.0"
   },
   "volta": {
