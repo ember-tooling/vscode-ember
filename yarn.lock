@@ -454,6 +454,31 @@
   resolved "https://registry.yarnpkg.com/@discoveryjs/json-ext/-/json-ext-0.5.5.tgz#9283c9ce5b289a3c4f61c12757469e59377f81f3"
   integrity sha512-6nFkfkmSeV/rqSaS4oWHgmpnYw194f6hmWF5is6b0J1naJZoiD0NTc9AiUwPHvWsowkjuHErCZT1wa0jg+BLIA==
 
+"@ember-tooling/ember-language-server@2.30.2":
+  version "2.30.2"
+  resolved "https://registry.yarnpkg.com/@ember-tooling/ember-language-server/-/ember-language-server-2.30.2.tgz#d8fe7915813d7a8cf8d95e006a1be9d1a8d6f610"
+  integrity sha512-zqIG+0j1zPSYr/Y8VisQ/gGh8e+TnbGXbFT8YIdITQl9giMRv8nvVUpZFJIE43jhZ/wuvav/W3XYUHQVjVIyEQ==
+  dependencies:
+    "@glimmer/syntax" "0.84.3"
+    "@lifeart/ember-extract-inline-templates" "2.2.0"
+    dag-map "2.0.2"
+    ember-meta-explorer "1.3.0"
+    ember-template-recast "6.1.4"
+    find-up "6.3.0"
+    flat "5.0.2"
+    fuzzaldrin "2.1.0"
+    json-parse-ast "1.0.8"
+    lodash "4.17.21"
+    memoizee "0.4.15"
+    picomatch "2.3.1"
+    semver "7.3.5"
+    vscode-jsonrpc "6.0.0"
+    vscode-languageserver "7.0.0"
+    vscode-languageserver-protocol "3.16.0"
+    vscode-languageserver-textdocument "1.0.4"
+    vscode-uri "3.0.3"
+    yaml "2.2.2"
+
 "@eslint/eslintrc@^1.3.0":
   version "1.3.0"
   resolved "https://registry.yarnpkg.com/@eslint/eslintrc/-/eslintrc-1.3.0.tgz#29f92c30bb3e771e4a2048c95fa6855392dfac4f"
@@ -567,31 +592,6 @@
   integrity sha512-iP1ShjY5jxIMhO8OSRo8RTscAeEVjBRueIRv+DSYbv7w+xKqrvyAvdd3NnHuq6/DCxiByhC3i7vMOpPiC7u6ug==
   dependencies:
     "@babel/traverse" "^7.17.0"
-
-"@lifeart/ember-language-server@2.30.1":
-  version "2.30.1"
-  resolved "https://registry.yarnpkg.com/@lifeart/ember-language-server/-/ember-language-server-2.30.1.tgz#90107a8b0a8b9a64d1c2bf32b4470ca224c784ed"
-  integrity sha512-z9yFkvg/g3A/p45C0E+cpZY/+NMnqwEzEkv+soJDGG3JCLj961ANkLrpKgKnIWRfWiBbSdB06fJ7R6xX027xQw==
-  dependencies:
-    "@glimmer/syntax" "0.84.3"
-    "@lifeart/ember-extract-inline-templates" "2.2.0"
-    dag-map "2.0.2"
-    ember-meta-explorer "1.3.0"
-    ember-template-recast "6.1.4"
-    find-up "6.3.0"
-    flat "5.0.2"
-    fuzzaldrin "2.1.0"
-    json-parse-ast "1.0.8"
-    lodash "4.17.21"
-    memoizee "0.4.15"
-    picomatch "2.3.1"
-    semver "7.3.5"
-    vscode-jsonrpc "6.0.0"
-    vscode-languageserver "7.0.0"
-    vscode-languageserver-protocol "3.16.0"
-    vscode-languageserver-textdocument "1.0.4"
-    vscode-uri "3.0.3"
-    yaml "2.2.2"
 
 "@nodelib/fs.scandir@2.1.4":
   version "2.1.4"
