@@ -4,7 +4,7 @@
   "description": "Provides features like auto complete, goto definition and diagnostics for Ember.js projects",
   "author": "Aleksandr Kanunnikov <lifeart92@gmail.com>",
   "license": "MIT",
-  "version": "3.0.57",
+  "version": "3.0.59",
   "publisher": "EmberTooling",
   "icon": "assets/icon.png",
   "keywords": [
@@ -182,7 +182,7 @@
     "p-limit": "^4.0.0",
     "yocto-queue": "^1.0.0",
     "path-exists": "5.0.0",
-    "@ember-tooling/ember-language-server": "2.30.4",
+    "@ember-tooling/ember-language-server": "2.30.5",
     "vscode-languageclient": "7.0.0"
   },
   "volta": {
