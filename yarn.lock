@@ -454,10 +454,10 @@
   resolved "https://registry.yarnpkg.com/@discoveryjs/json-ext/-/json-ext-0.5.5.tgz#9283c9ce5b289a3c4f61c12757469e59377f81f3"
   integrity sha512-6nFkfkmSeV/rqSaS4oWHgmpnYw194f6hmWF5is6b0J1naJZoiD0NTc9AiUwPHvWsowkjuHErCZT1wa0jg+BLIA==
 
-"@ember-tooling/ember-language-server@2.30.6":
-  version "2.30.6"
-  resolved "https://registry.yarnpkg.com/@ember-tooling/ember-language-server/-/ember-language-server-2.30.6.tgz#611c888badf83ef12da81c2e9a7d1ed625db07ae"
-  integrity sha512-UgIttQoiPTeRpFuewW+6/PMHodYknmqtzCRg7Z3qVpdsb6Qm8peVvrEa/tKI2kIY/WgIMCBHNIJP1zpibOZemQ==
+"@ember-tooling/ember-language-server@2.30.7":
+  version "2.30.7"
+  resolved "https://registry.yarnpkg.com/@ember-tooling/ember-language-server/-/ember-language-server-2.30.7.tgz#91875488aac25f51814589adb0ce480fb41d6ae7"
+  integrity sha512-o0vg52ElrgN+/1FFWoNElN4r6OQ0sYbppZgnTueXrFRSlwvJClr/Lf+NKpr86GpsEac/Qoql6Hz6nJWZwPMMig==
   dependencies:
     "@glimmer/syntax" "0.84.3"
     "@lifeart/ember-extract-inline-templates" "2.2.0"

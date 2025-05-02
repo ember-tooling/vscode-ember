@@ -18,7 +18,7 @@ import {
   StatusBarAlignment,
   Uri,
 } from 'vscode';
-import { isEmberCliProject, isGlimmerXProject } from './workspace-utils';
+import { isEmberCliProject, emberLikeProject } from './workspace-utils';
 import {
   LanguageClient,
   LanguageClientOptions,
@@ -50,7 +50,7 @@ export async function activate(context: ExtensionContext) {
   };
 
   if (!(await isEmberCliProject())) {
-    if (!(await isGlimmerXProject())) {
+    if (!(await emberLikeProject())) {
       return;
     }
   }
