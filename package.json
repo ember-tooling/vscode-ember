@@ -58,7 +58,7 @@
       "properties": {
         "els.server.debug.port": {
           "type": "number",
-          "default": 6003,
+          "default": 6004,
           "description": "Language server debug port"
         },
         "els.server.debug.enabled": {
@@ -182,7 +182,7 @@
     "p-limit": "^4.0.0",
     "yocto-queue": "^1.0.0",
     "path-exists": "5.0.0",
-    "@ember-tooling/ember-language-server": "2.30.8",
+    "@ember-tooling/ember-language-server": "2.30.9",
     "vscode-languageclient": "7.0.0"
   },
   "volta": {

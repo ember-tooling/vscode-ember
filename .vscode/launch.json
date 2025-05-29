@@ -21,7 +21,7 @@
       "name":"Attach to ELS Server",
       "type":"node",
       "request":"attach",
-      "port":6003,
+      "port":6004,
       "sourceMaps":true,
       "outFiles":[
          "${workspaceRoot}/node_modules/@ember-tooling/ember-language-server/lib/**/*.js"
