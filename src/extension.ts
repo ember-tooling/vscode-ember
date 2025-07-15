@@ -284,6 +284,8 @@ export async function activate(context: ExtensionContext) {
 
   if (config.codeLens.relatedFiles) {
     const langs = [
+      'glimmer-js',
+      'glimmer-ts',
       'javascript',
       'typescript',
       'handlebars',
