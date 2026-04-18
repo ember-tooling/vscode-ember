@@ -18,7 +18,7 @@ import {
   StatusBarAlignment,
   Uri,
 } from 'vscode';
-import { isEmberCliProject, emberLikeProject } from './workspace-utils';
+import { isEmberProject } from './workspace-utils';
 import {
   LanguageClient,
   LanguageClientOptions,
@@ -49,10 +49,8 @@ export async function activate(context: ExtensionContext) {
     },
   };
 
-  if (!(await isEmberCliProject())) {
-    if (!(await emberLikeProject())) {
-      return;
-    }
+  if (!(await isEmberProject())) {
+    return;
   }
 
   const syncExtensions = ['js', 'ts', 'hbs', 'gts', 'gjs'];

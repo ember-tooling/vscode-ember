@@ -1,5 +1,13 @@
 {
   "version": "0.2.0",
+  "inputs": [
+    {
+      "id": "testWorkspace",
+      "type": "promptString",
+      "description": "Absolute path to the folder to open in the Extension Development Host",
+      "default": "${workspaceFolder}"
+    }
+  ],
   "configurations": [
     {
       "name": "Launch Client",
@@ -10,7 +18,7 @@
         "--extensionDevelopmentPath=${workspaceRoot}"
       ],
       "outFiles": [
-        "${workspaceRoot}/out/**/*.js",
+        "${workspaceRoot}/out/**/*.js"
       ],
       "preLaunchTask": {
         "type": "npm",
@@ -18,23 +26,40 @@
       }
     },
     {
-      "name":"Attach to ELS Server",
-      "type":"node",
-      "request":"attach",
-      "port":6004,
-      "sourceMaps":true,
-      "outFiles":[
-         "${workspaceRoot}/node_modules/@ember-tooling/ember-language-server/lib/**/*.js"
+      "name": "Launch Client (prompt for folder)",
+      "type": "extensionHost",
+      "request": "launch",
+      "runtimeExecutable": "${execPath}",
+      "args": [
+        "--extensionDevelopmentPath=${workspaceRoot}",
+        "${input:testWorkspace}"
       ],
-      "restart":true,
-      "smartStep":true
-   }
+      "outFiles": [
+        "${workspaceRoot}/out/**/*.js"
+      ],
+      "preLaunchTask": {
+        "type": "npm",
+        "script": "watch"
+      }
+    },
+    {
+      "name": "Attach to ELS Server",
+      "type": "node",
+      "request": "attach",
+      "port": 6004,
+      "sourceMaps": true,
+      "outFiles": [
+        "${workspaceRoot}/node_modules/@ember-tooling/ember-language-server/lib/**/*.js"
+      ],
+      "restart": true,
+      "smartStep": true
+    }
   ],
-	"compounds": [
-		{
-			"name": "Client + Server",
-			"configurations": ["Launch Client", "Attach"], //"Attach" is in ember-language-server project
-      "stopAll": true,
-		}
-	]
+  "compounds": [
+    {
+      "name": "Client + Server",
+      "configurations": ["Launch Client", "Attach"],
+      "stopAll": true
+    }
+  ]
 }
