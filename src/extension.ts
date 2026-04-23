@@ -11,6 +11,7 @@ import {
   workspace,
   ExtensionContext,
   StatusBarItem,
+  OutputChannel,
   window,
   commands,
   languages,
@@ -30,6 +31,7 @@ import {
 import { provideCodeLenses } from './lenses';
 let ExtStatusBarItem: StatusBarItem;
 let ExtServerDebugBarItem: StatusBarItem;
+let ExtOutputChannel: OutputChannel;
 export async function activate(context: ExtensionContext) {
   // The server is implemented in node
   const serverModule = path.join(context.extensionPath, './start-server.js');
@@ -49,7 +51,10 @@ export async function activate(context: ExtensionContext) {
     },
   };
 
-  if (!(await isEmberProject())) {
+  ExtOutputChannel = window.createOutputChannel('Ember Language Server');
+  context.subscriptions.push(ExtOutputChannel);
+
+  if (!(await isEmberProject(ExtOutputChannel))) {
     return;
   }
 
@@ -68,7 +73,7 @@ export async function activate(context: ExtensionContext) {
       'javascript',
       'typescript',
     ],
-    outputChannelName: 'Ember Language Server',
+    outputChannel: ExtOutputChannel,
     revealOutputChannelOn: RevealOutputChannelOn.Never,
     initializationOptions: { editor: 'vscode' },
     synchronize: {

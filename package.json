@@ -37,6 +37,10 @@
     "workspaceContains:**/ember-cli-build.js",
     "workspaceContains:**/ember-cli-build.cjs",
     "workspaceContains:**/node_modules/ember-source/package.json",
+    "workspaceContains:**/node_modules/ember-template-lint/package.json",
+    "workspaceContains:**/node_modules/ember-template-imports/package.json",
+    "workspaceContains:**/node_modules/content-tag/package.json",
+    "workspaceContains:**/node_modules/@glimmerx/core/package.json",
     "onCommand:els.runInEmberCLI"
   ],
   "contributes": {

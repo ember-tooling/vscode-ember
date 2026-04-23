@@ -1,6 +1,4 @@
-import * as path from 'path';
-import { createRequire } from 'module';
-import { workspace, Uri, WorkspaceFolder } from 'vscode';
+import { workspace, Uri, WorkspaceFolder, OutputChannel } from 'vscode';
 
 /**
  * Packages whose presence indicates an Ember-like project. If any of these
@@ -38,7 +36,9 @@ const DEPENDENCY_FIELDS = [
  * the current workspace. Iterates all workspace folders and short-circuits on
  * the first positive signal.
  */
-export async function isEmberProject(): Promise<boolean> {
+export async function isEmberProject(
+  outputChannel: OutputChannel
+): Promise<boolean> {
   const config = workspace.getConfiguration('els');
   const forceEnable = config.get<boolean>('detection.forceEnable', false);
   if (forceEnable) {
@@ -52,30 +52,40 @@ export async function isEmberProject(): Promise<boolean> {
   }
 
   const results = await Promise.all(
-    folders.map((folder) => detectInFolder(folder.uri.fsPath))
+    folders.map((folder) => detectInFolder(folder.uri))
   );
-  return results.some((r) => r === true);
+
+  if (!results.some((r) => r === true)) {
+    const paths = folders.map((f) => f.uri.fsPath).join(', ');
+    outputChannel.appendLine(
+      `ELS: no Ember markers found in ${paths}; set \`els.detection.forceEnable\` to override.`
+    );
+    return false;
+  }
+
+  return true;
 }
 
-async function detectInFolder(folderFsPath: string): Promise<boolean> {
+async function detectInFolder(folderUri: Uri): Promise<boolean> {
   // Tier 1: cheap package.json / build-file inspection.
-  if (await checkBuildFile(folderFsPath)) {
+  if (await checkBuildFile(folderUri)) {
     return true;
   }
 
-  if (await checkPackageJsonDeps(folderFsPath)) {
+  if (await checkPackageJsonDeps(folderUri)) {
     return true;
   }
 
   // Tier 2: Node resolver. Handles pnpm (incl. package-level opens),
-  // npm-hoisted, and yarn classic transparently.
-  if (checkViaResolver(folderFsPath)) {
+  // npm-hoisted, and yarn classic transparently. Not available in the
+  // web-worker build; guarded by a try/catch around the dynamic import.
+  if (await checkViaResolver(folderUri)) {
     return true;
   }
 
   // Tier 3: explicit ancestor walk via workspace.fs. Belt-and-braces for
   // folders without a package.json or exotic resolver failures.
-  if (await checkViaAncestorWalk(folderFsPath)) {
+  if (await checkViaAncestorWalk(folderUri)) {
     return true;
   }
 
@@ -87,9 +97,9 @@ async function detectInFolder(folderFsPath: string): Promise<boolean> {
  * the file is missing, unreadable, not valid JSON, or not a JSON object.
  */
 async function readPackageJson(
-  dir: string
+  dirUri: Uri
 ): Promise<Record<string, unknown> | undefined> {
-  const pkgUri = Uri.file(path.join(dir, 'package.json'));
+  const pkgUri = Uri.joinPath(dirUri, 'package.json');
 
   let raw: Uint8Array;
   try {
@@ -112,16 +122,15 @@ async function readPackageJson(
   return parsed as Record<string, unknown>;
 }
 
-async function checkPackageJsonDeps(folderFsPath: string): Promise<boolean> {
-  const pkg = await readPackageJson(folderFsPath);
+async function checkPackageJsonDeps(folderUri: Uri): Promise<boolean> {
+  const pkg = await readPackageJson(folderUri);
   if (!pkg) return false;
 
   for (const field of DEPENDENCY_FIELDS) {
     const deps = pkg[field];
     if (!deps || typeof deps !== 'object') continue;
-    const depNames = Object.keys(deps as Record<string, unknown>);
     for (const marker of EMBER_MARKER_PACKAGES) {
-      if (depNames.indexOf(marker) !== -1) {
+      if (marker in (deps as Record<string, unknown>)) {
         return true;
       }
     }
@@ -130,9 +139,9 @@ async function checkPackageJsonDeps(folderFsPath: string): Promise<boolean> {
   return false;
 }
 
-async function checkBuildFile(folderFsPath: string): Promise<boolean> {
+async function checkBuildFile(folderUri: Uri): Promise<boolean> {
   for (const name of EMBER_CLI_BUILD_FILES) {
-    const uri = Uri.file(path.join(folderFsPath, name));
+    const uri = Uri.joinPath(folderUri, name);
     try {
       await workspace.fs.stat(uri);
       return true;
@@ -143,12 +152,23 @@ async function checkBuildFile(folderFsPath: string): Promise<boolean> {
   return false;
 }
 
-function checkViaResolver(folderFsPath: string): boolean {
+async function checkViaResolver(folderUri: Uri): Promise<boolean> {
+  // createRequire is a Node.js built-in and is not available in the
+  // web-worker/browser build. Import it lazily so the module still loads
+  // in that environment; if the import fails we fall through gracefully.
+  let createRequire: ((filename: string) => NodeRequire) | undefined;
+  try {
+    ({ createRequire } = await import('module'));
+  } catch {
+    return false;
+  }
+  if (!createRequire) return false;
+
   let anchoredRequire: NodeRequire;
   try {
     // The anchor file need not exist; createRequire only uses the parent
     // directory as the resolution base.
-    anchoredRequire = createRequire(path.join(folderFsPath, 'noop.js'));
+    anchoredRequire = createRequire(Uri.joinPath(folderUri, 'noop.js').fsPath);
   } catch {
     return false;
   }
@@ -165,22 +185,26 @@ function checkViaResolver(folderFsPath: string): boolean {
   return false;
 }
 
-async function checkViaAncestorWalk(folderFsPath: string): Promise<boolean> {
+async function checkViaAncestorWalk(folderUri: Uri): Promise<boolean> {
   const seen = new Set<string>();
-  let dir = folderFsPath;
-  // -1 = not yet seen a monorepo root. Once set to a non-negative value,
+  let dirUri = folderUri;
+  // -1 = not yet seen a workspace root. Once set to a non-negative value,
   // counts how many more ancestors we'll visit before stopping.
-  let stepsAfterMonorepoRoot = -1;
+  let stepsAfterWorkspaceRoot = -1;
 
   // Cap the walk to avoid pathological filesystems. 40 levels is deeper than
   // any realistic project tree.
   for (let i = 0; i < 40; i += 1) {
-    if (seen.has(dir)) break;
-    seen.add(dir);
+    const key = dirUri.toString();
+    if (seen.has(key)) break;
+    seen.add(key);
 
     for (const marker of EMBER_MARKER_PACKAGES) {
-      const candidate = Uri.file(
-        path.join(dir, 'node_modules', marker, 'package.json')
+      const candidate = Uri.joinPath(
+        dirUri,
+        'node_modules',
+        marker,
+        'package.json'
       );
       try {
         await workspace.fs.stat(candidate);
@@ -190,30 +214,37 @@ async function checkViaAncestorWalk(folderFsPath: string): Promise<boolean> {
       }
     }
 
-    if (stepsAfterMonorepoRoot < 0) {
-      // Not yet at a monorepo root: allow one more ancestor after we hit one.
-      // pnpm-workspace.yaml or a package.json with a "workspaces" field marks
-      // the top of the workspace; going one level above handles layouts that
-      // nest the repo inside another tooling directory.
-      if (await isMonorepoRoot(dir)) {
-        stepsAfterMonorepoRoot = 1;
+    if (stepsAfterWorkspaceRoot < 0) {
+      // Not yet at a workspace root: once we find one, allow one more
+      // ancestor above it. pnpm-workspace.yaml or a package.json with a
+      // "workspaces" field marks the top of the workspace; going one level
+      // above handles layouts that nest the repo inside another tooling
+      // directory.
+      if (await isWorkspaceRoot(dirUri)) {
+        stepsAfterWorkspaceRoot = 0;
       }
-    } else if (stepsAfterMonorepoRoot === 0) {
+    } else if (stepsAfterWorkspaceRoot === 0) {
       break;
     } else {
-      stepsAfterMonorepoRoot -= 1;
+      stepsAfterWorkspaceRoot -= 1;
     }
 
-    const parent = path.dirname(dir);
-    if (parent === dir) break;
-    dir = parent;
+    const parentPath = Uri.joinPath(dirUri, '..').fsPath;
+    const parentUri = Uri.file(parentPath);
+    if (parentUri.toString() === dirUri.toString()) break;
+    dirUri = parentUri;
   }
 
   return false;
 }
 
-async function isMonorepoRoot(dir: string): Promise<boolean> {
-  const pnpmWorkspace = Uri.file(path.join(dir, 'pnpm-workspace.yaml'));
+/**
+ * Returns true if `dir` is the root of a monorepo workspace. Checks for:
+ *   - pnpm: presence of a pnpm-workspace.yaml file
+ *   - npm/yarn: a package.json with a "workspaces" field
+ */
+async function isWorkspaceRoot(dirUri: Uri): Promise<boolean> {
+  const pnpmWorkspace = Uri.joinPath(dirUri, 'pnpm-workspace.yaml');
   try {
     await workspace.fs.stat(pnpmWorkspace);
     return true;
@@ -221,6 +252,6 @@ async function isMonorepoRoot(dir: string): Promise<boolean> {
     // fall through
   }
 
-  const pkg = await readPackageJson(dir);
+  const pkg = await readPackageJson(dirUri);
   return !!pkg && 'workspaces' in pkg;
 }
