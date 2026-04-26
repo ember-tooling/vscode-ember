@@ -11,6 +11,7 @@ import {
   workspace,
   ExtensionContext,
   StatusBarItem,
+  OutputChannel,
   window,
   commands,
   languages,
@@ -18,7 +19,7 @@ import {
   StatusBarAlignment,
   Uri,
 } from 'vscode';
-import { isEmberCliProject, emberLikeProject } from './workspace-utils';
+import { isEmberProject } from './workspace-utils';
 import {
   LanguageClient,
   LanguageClientOptions,
@@ -30,6 +31,7 @@ import {
 import { provideCodeLenses } from './lenses';
 let ExtStatusBarItem: StatusBarItem;
 let ExtServerDebugBarItem: StatusBarItem;
+let ExtOutputChannel: OutputChannel;
 export async function activate(context: ExtensionContext) {
   // The server is implemented in node
   const serverModule = path.join(context.extensionPath, './start-server.js');
@@ -49,10 +51,11 @@ export async function activate(context: ExtensionContext) {
     },
   };
 
-  if (!(await isEmberCliProject())) {
-    if (!(await emberLikeProject())) {
-      return;
-    }
+  ExtOutputChannel = window.createOutputChannel('Ember Language Server');
+  context.subscriptions.push(ExtOutputChannel);
+
+  if (!(await isEmberProject(ExtOutputChannel))) {
+    return;
   }
 
   const syncExtensions = ['js', 'ts', 'hbs', 'gts', 'gjs'];
@@ -70,7 +73,7 @@ export async function activate(context: ExtensionContext) {
       'javascript',
       'typescript',
     ],
-    outputChannelName: 'Ember Language Server',
+    outputChannel: ExtOutputChannel,
     revealOutputChannelOn: RevealOutputChannelOn.Never,
     initializationOptions: { editor: 'vscode' },
     synchronize: {
