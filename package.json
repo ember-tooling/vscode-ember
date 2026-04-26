@@ -15,7 +15,8 @@
     "Ember Language server"
   ],
   "engines": {
-    "vscode": "^1.60.0"
+    "vscode": "^1.60.0",
+    "node": ">=20"
   },
   "categories": [
     "Programming Languages",
@@ -187,18 +188,18 @@
     "which-typed-array": "^1.1.7"
   },
   "dependencies": {
+    "@ember-tooling/ember-language-server": "2.30.9",
     "find-up": "6.3.0",
     "locate-path": "7.1.0",
-    "p-locate": "6.0.0",
     "p-limit": "^4.0.0",
-    "yocto-queue": "^1.0.0",
+    "p-locate": "6.0.0",
     "path-exists": "5.0.0",
-    "@ember-tooling/ember-language-server": "2.30.9",
-    "vscode-languageclient": "7.0.0"
+    "vscode-languageclient": "7.0.0",
+    "yocto-queue": "^1.0.0"
   },
   "volta": {
-    "node": "14.21.1",
-    "yarn": "1.22.10"
+    "node": "20.20.2",
+    "yarn": "1.22.22"
   },
   "prettier": {
     "arrowParens": "always",
