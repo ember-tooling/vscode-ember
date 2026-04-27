@@ -91,6 +91,7 @@ Using this addons as dev-dependencies in your project (or downloading and provid
 - `els.server.debug.port` - LS debug port
 - `els.server.debug.enabled` - disable / enable LS debug
 - `els.codeLens.relatedFiles` - disable / enable related files
+- `els.local.collectTemplateTokens` - show component usages across the project. Disabling may improve startup performance for very large projects, but also disables the Ember File Usages window.
 - `els.local.useBuiltinLinting` - disable / enable ember-template-lint integration
 - `els.local.useBuiltinFoldingRangeProvider` - disable / enable folding range provider (hbs)
 - `els.detection.forceEnable` - bypass Ember project detection and always start the language server. Useful for exotic monorepo layouts (e.g. pnpm setups) where automatic detection fails.
