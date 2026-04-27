@@ -93,6 +93,7 @@ Using this addons as dev-dependencies in your project (or downloading and provid
 - `els.codeLens.relatedFiles` - disable / enable related files
 - `els.local.useBuiltinLinting` - disable / enable ember-template-lint integration
 - `els.local.useBuiltinFoldingRangeProvider` - disable / enable folding range provider (hbs)
+- `els.detection.forceEnable` - bypass Ember project detection and always start the language server. Useful for exotic monorepo layouts (e.g. pnpm setups) where automatic detection fails.
 - `els.local.addons` - globally defined local language server addons entry folders, for example:
 
 ```js
